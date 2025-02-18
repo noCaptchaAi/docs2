@@ -50,8 +50,8 @@ export default defineConfig({
         //   ],
         // },
         {
-          label: "Get Balance",
-          autogenerate: { directory: "/account" },
+          label: "Get Started",
+          autogenerate: { directory: "/start" },
         },
         // {
         //   label: "Essentials",

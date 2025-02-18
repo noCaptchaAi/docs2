@@ -8,7 +8,7 @@ hero:
     file: ../../assets/products.svg
   actions:
     - text: Start Solving
-      link: /getting-started/introduction
+      link: /start/introduction
       icon: right-arrow
       variant: primary
     - text: Get Browser Extension
@@ -16,7 +16,7 @@ hero:
       icon: seti:firefox
 ---
 
-import { Card, CardGrid } from '../../components/components'
+import { Card, CardGrid } from "../../components/components";
 import {
   Icon,
   LinkCard,
@@ -45,7 +45,12 @@ import Customcard from "../../components/Customcard.astro";
       altText="BLS OCR"
       link="/guides/imagetasks/bls"
     />
-
+    <Customcard
+      title="OCR/Text Captcha"
+      imageSrc="icons/ocr.svg"
+      altText="BLS OCR"
+      link="/guides/imagetasks/bls"
+    />
     <Customcard
       title="GeeTest v4 Image"
       imageSrc="icons/geetest.png"
@@ -59,40 +64,11 @@ import Customcard from "../../components/Customcard.astro";
       altText="AWSWAF"
       link="/guides/imagetasks/awswaf/"
     />
-
-    <Customcard
-      title="Turnstile"
-      imageSrc="icons/turnstile.png"
-      altText="Cloudflare Turnstile"
-      link="/guides/imagetasks/turnstile/"
-    />
      <Customcard
       title="mtCAPTCHA"
       imageSrc="icons/mtcaptcha.png"
       altText="Cloudflare Turnstile"
       link="/guides/imagetasks/mtcaptcha"
-      soon="upcoming"
-    />
-    <Customcard
-      title="Lemin"
-      imageSrc="icons/mtcaptcha.png"
-      altText="Lemin"
-      link="/guides/imagetasks/lemin/"
-      soon="upcoming"
-    />
-    <Customcard
-      title="Tencent"
-      imageSrc="icons/mtcaptcha.png"
-      altText="Lemin"
-      link="/guides/imagetasks/Tencent/"
-      soon="upcoming"
-    />
-    <Customcard
-      title="Tiktok"
-      imageSrc="icons/mtcaptcha.png"
-      altText="Tiktok"
-      link="/guides/imagetasks/Tiktok/"
-      soon="upcoming"
     />
 
   </div>
@@ -134,4 +110,3 @@ import Customcard from "../../components/Customcard.astro";
 </Card>
 
 </section>
-
