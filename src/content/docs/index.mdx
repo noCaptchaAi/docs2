@@ -1,0 +1,137 @@
+---
+title: NoCaptcha Ai Documents
+description: An approachable, performant and versatile framework for building web user interfaces.
+template: splash
+hero:
+  tagline: Automatic Captcha solution with API and scale to infinity in minuets with NoCaptchaAi.
+  image:
+    file: ../../assets/products.svg
+  actions:
+    - text: Start Solving
+      link: /getting-started/introduction
+      icon: right-arrow
+      variant: primary
+    - text: Get Browser Extension
+      link: https://nocaptchaai.com/extension
+      icon: seti:firefox
+---
+
+import { Card, CardGrid } from '../../components/components'
+import {
+  Icon,
+  LinkCard,
+  LinkButton,
+  Aside,
+} from "@astrojs/starlight/components";
+import Customcard from "../../components/Customcard.astro";
+
+<div class="text-center">
+  <h1 class="text-4xl mb-12 font-bold text-center ">Available API Solutions</h1>
+</div>
+
+<section title="NoCaptchaAi Recognitions" class="flex flex-col items-center justify-center">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 w-full max-w-[95vw]">
+
+    <Customcard
+      title="ReCAPTCHA v2"
+      imageSrc="icons/recaptcha.png"
+      altText="ReCAPTCHA V2"
+       link="/guides/imagetasks/recaptcha/"
+    />
+
+    <Customcard
+      title="BLS OCR Text"
+      imageSrc="icons/bls.png"
+      altText="BLS OCR"
+      link="/guides/imagetasks/bls"
+    />
+
+    <Customcard
+      title="GeeTest v4 Image"
+      imageSrc="icons/geetest.png"
+      altText="GeeTest v4"
+      link="/guides/imagetasks/geetestv4/"
+    />
+
+     <Customcard
+      title="AWS Waf Image"
+      imageSrc="icons/awswaf.png"
+      altText="AWSWAF"
+      link="/guides/imagetasks/awswaf/"
+    />
+
+    <Customcard
+      title="Turnstile"
+      imageSrc="icons/turnstile.png"
+      altText="Cloudflare Turnstile"
+      link="/guides/imagetasks/turnstile/"
+    />
+     <Customcard
+      title="mtCAPTCHA"
+      imageSrc="icons/mtcaptcha.png"
+      altText="Cloudflare Turnstile"
+      link="/guides/imagetasks/mtcaptcha"
+      soon="upcoming"
+    />
+    <Customcard
+      title="Lemin"
+      imageSrc="icons/mtcaptcha.png"
+      altText="Lemin"
+      link="/guides/imagetasks/lemin/"
+      soon="upcoming"
+    />
+    <Customcard
+      title="Tencent"
+      imageSrc="icons/mtcaptcha.png"
+      altText="Lemin"
+      link="/guides/imagetasks/Tencent/"
+      soon="upcoming"
+    />
+    <Customcard
+      title="Tiktok"
+      imageSrc="icons/mtcaptcha.png"
+      altText="Tiktok"
+      link="/guides/imagetasks/Tiktok/"
+      soon="upcoming"
+    />
+
+  </div>
+
+</section>
+
+<section>
+<h1 class="text font-bold pb-5 text-center caret-rose-600 normal-case">
+  Why choose NoCaptchaAi?
+</h1>
+
+<Card> 
+<CardGrid stagger>
+  <Card title="Cross-Browser Solving" icon="laptop">
+    Our browser extension and mobile app are capable to handle for all major browsers and Captcha challenges. 🌐
+  </Card>
+  <Card title="Cost-effective" icon="heart">
+    Affordable pricing for businesses of all sizes, without compromising on quality. 💰
+  </Card>
+  
+  <Card title="Blazing fast" icon="rocket">
+    Solve captchas faster, means more time for you to do what you love. ⚡
+  </Card>
+
+<Card title="Reliable" icon="heart">
+  3+ years of experience and a proven track record. No compromise on quality and
+  service uptime 💪
+</Card>
+
+<Card title="Secure" icon="setting">
+  We take privacy seriously, Your data is safe with us, thanks to top-notch
+  encryption. 🔐
+</Card>
+
+<Card title="Scalable" icon="rocket">
+  500+ business trust us with their enterprise needs. 🚀
+</Card>
+</CardGrid>
+</Card>
+
+</section>
+

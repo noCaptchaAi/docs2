@@ -1,0 +1,47 @@
+---
+import { icons } from 'lucide-react'
+import { Icon } from './icon'
+
+interface Props {
+  iconName?: keyof typeof icons
+  title: string
+  iconStyles?: string
+  href?: string
+}
+
+const { iconName, title, iconStyles, href } = Astro.props
+---
+
+{
+  href ? (
+    <a href={href}>
+      <article class='card sl-flex'>
+        <p class='title sl-flex'>
+          {iconName && (
+            <span class='icon'>
+              <Icon name={iconName} className={iconStyles} />
+            </span>
+          )}
+          <span set:html={title} />
+        </p>
+        <div class='body'>
+          <slot />
+        </div>
+      </article>
+    </a>
+  ) : (
+    <article class='card sl-flex'>
+      <p class='title sl-flex'>
+        {iconName && (
+          <span class='icon'>
+            <Icon name={iconName} className={iconStyles} />
+          </span>
+        )}
+        <span set:html={title} />
+      </p>
+      <div class='body'>
+        <slot />
+      </div>
+    </article>
+  )
+}
