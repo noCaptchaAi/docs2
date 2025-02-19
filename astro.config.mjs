@@ -11,6 +11,7 @@ export default defineConfig({
         light: "./src/assets/dark-logo.svg",
         dark: "./src/assets/light-logo.svg",
       },
+      favicon:"./public/logo/logo_light.png",
       customCss: ["./src/styles/custom.css", "./src/styles/tailwind.css"],
       social: {
         github: "https://github.com/alexwhitmore/astro-mintlify",

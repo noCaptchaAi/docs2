@@ -10,52 +10,45 @@ const id = `moon-mask-${crypto.randomBytes(4).toString('hex')}`
 ---
 
 <starlight-rapide-theme-select>
+ 
+  <!-- <label for="language" class="sr-only">Translate Language</label>
+  <div class="flex items-center gap-2 px-2 border border-blue-500/90 rounded-full">
+    <svg fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="1em" width="1em" style="overflow: visible; color: currentcolor;">
+      <path fill="currentColor" d="m18.5 10 4.4 11h-2.155l-1.201-3h-4.09l-1.199 3h-2.154L16.5 10h2ZM10 2v2h6v2h-1.968a18.221 18.221 0 0 1-3.62 6.301 14.865 14.865 0 0 0 2.335 1.707l-.75 1.878A17.016 17.016 0 0 1 9 13.725a16.677 16.677 0 0 1-6.201 3.548l-.536-1.929a14.7 14.7 0 0 0 5.327-3.042A18.078 18.078 0 0 1 4.767 8h2.24A16.031 16.031 0 0 0 9 10.877a16.165 16.165 0 0 0 2.91-4.876L2 6V4h6V2h2Zm7.5 10.885L16.253 16h2.492L17.5 12.885Z"></path>
+    </svg>
+    <select id="language" aria-label="Translate Language" title="Translate" class="p-1 rounded bg-gray-900 focus:outline-none">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="zh">中文</option>
+      <option value="ja">日本語</option>
+    </select>
+  </div> -->
   <button
-    aria-label="Toggle theme"
-    aria-live="polite"
-    class="sl-flex"
-    title="Toggle theme"
-  >
-    <svg aria-hidden="true" height="16" viewBox="0 0 24 24" width="16">
-      <mask class="moon" id={id}>
-        <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
-        <circle cx="24" cy="10" r="6" fill="black"></circle>
-      </mask>
-      <circle class="sun" cx="12" cy="12" r="6" mask={`url(#${id})`}></circle>
-      <g class="sun-beams" stroke="currentColor">
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-      </g>
-    </svg>
-  </button>
-  <button aria-label="Translate Language" title="Translate" class="flex items-center gap-2">
-    <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        width="24" 
-        height="24" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
-    >
-        <path d="M3 5h12"></path>
-        <path d="M9 3v2"></path>
-        <path d="M12 12c-3 0-6-3-6-6"></path>
-        <path d="M3 10c0 3.866 3.134 7 7 7 2 0 3.792-.99 5-2.5"></path>
-        <path d="M17 14l4 4"></path>
-        <path d="M21 14l-4 4"></path>
-    </svg>
-    <span>English</span>
-  </button>
-
+  aria-label="Toggle theme"
+  aria-live="polite"
+  class="sl-flex"
+  title="Toggle theme"
+>
+  <svg aria-hidden="true" height="16" viewBox="0 0 24 24" width="16">
+    <mask class="moon" id={id}>
+      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
+      <circle cx="24" cy="10" r="6" fill="black"></circle>
+    </mask>
+    <circle class="sun" cx="12" cy="12" r="6" mask={`url(#${id})`}></circle>
+    <g class="sun-beams" stroke="currentColor">
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </g>
+  </svg>
+</button>
 </starlight-rapide-theme-select>
 
 <style>

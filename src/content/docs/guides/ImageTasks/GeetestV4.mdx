@@ -186,10 +186,8 @@ axios.post(url, payload, {
 import requests
 import json
 
-# URL to which the request will be sent
-url = 'https://api.nocaptchaai.com/createTask'
+url = "https://api.nocaptchaai.com/createTask"
 
-# Updated Payload data
 payload = {
     "clientKey": "userxx-2782xx2-065e-x-7daa-xxxxx",
     "task": {
@@ -203,16 +201,16 @@ payload = {
     }
 }
 
-# Headers (if needed, you can adjust as necessary)
 headers = {
     'Content-Type': 'application/json'
 }
 
-# Send POST request
-response = requests.post(url, headers=headers, json=payload)
+response = requests.post(url, data=json.dumps(payload), headers=headers)
 
-# Print the response
-print(response.text)
+if response.status_code == 200:
+    print(response.json())
+else:
+    print(f"Error: {response.status_code}, {response.text}")
 
 
 ```

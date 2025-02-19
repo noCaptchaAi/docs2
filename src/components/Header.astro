@@ -3,8 +3,8 @@ import Search from "@astrojs/starlight/components/Search.astro";
 import type { Props } from "@astrojs/starlight/props";
 import ThemeToggle from "./ThemeToggle.astro";
 import { HeaderMenu } from "./header-menu";
+import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
 ---
-
 <div>
   <nav class="border-b bg-background w-screen px-6 navbar">
     <div class="flex justify-between items-center h-full w-full">
@@ -120,6 +120,7 @@ import { HeaderMenu } from "./header-menu";
 
       </a>
         <ThemeToggle {...Astro.props} />
+        <LanguageSelect {...Astro.props}/>
       </div>
 
       <div class="flex">
