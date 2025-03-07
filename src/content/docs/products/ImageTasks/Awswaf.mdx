@@ -11,6 +11,8 @@ import { Code } from "@astrojs/starlight/components";
 import { Aside } from "@astrojs/starlight/components";
 import { LinkButton } from "@astrojs/starlight/components";
 import { Steps } from "@astrojs/starlight/components";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
 
 ## Awswaf a Image Recognition Service
 
@@ -44,6 +46,10 @@ Host: api.nocaptchaai.com
 Content-Type: application/json
 ```
 
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.AwsWaf} />
+
 ## Request Format
 
 ```json
@@ -57,6 +63,9 @@ aws:grid:curtain
 aws:grid:mop
 aws:grid:clock
 ```
+
+
+
 
 ## Request Example
 

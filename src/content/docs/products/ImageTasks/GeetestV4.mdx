@@ -16,6 +16,9 @@ import WrapperComponent from "../../../../components/Layout.astro";
 import { Image } from "astro:assets";
 import { Card, CardGrid } from "@astrojs/starlight/components";
 import slide from "/public/demo/geetest/slide.png";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
+
 
 ## GeeTestV4 Image Recognition
 
@@ -28,6 +31,11 @@ POST https://api.nocaptchaai.com/createTask
 Host: api.nocaptchaai.com
 Content-Type: application/json
 ```
+
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.GeeTestV4} />
+
 
 ## ? Question Types
 
@@ -68,6 +76,8 @@ Content-Type: application/json
      </CardGrid>
   </TabItem>
 </Tabs>
+
+
 
 ## Request Format
 

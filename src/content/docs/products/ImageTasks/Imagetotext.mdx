@@ -3,6 +3,7 @@ title: ImageToText
 description: A guide in my new Starlight docs site.
 ---
 
+import Table from "../../../../components/Table.astro";
 import { Badge } from "@astrojs/starlight/components";
 import { Icon } from "@astrojs/starlight/components";
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -13,6 +14,11 @@ import { Steps } from "@astrojs/starlight/components";
 import { Card, CardGrid } from "@astrojs/starlight/components";
 import { LinkCard } from "@astrojs/starlight/components";
 import LinkButtons from "../../../../components/Promo.astro";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
+
+
+
 
 # ImageToText Task (OCR) : Image Charecter Recognition
 
@@ -21,31 +27,17 @@ with this `POST` request you can solve Charecter Recognition image challenges.
 
 <LinkButtons />
 
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.ImageToText} />
 
 
-```
-POST https://api.nocaptchaai.com/createTask
-Host: api.nocaptchaai.com
-Content-Type: application/json
-```
+## Supported `module` List:
 
-### Supported `module` List:
-```
- "module": "common"
- "module": "omgomg"
- "module": "probot"
- "module": "mtcap"
- "module": "dell"
- "module": "catch"
- "module": "webde"
- "module": "zefoy"
- "module": "caixa"
- "module": "oxcheats"
- "module": "u1"
- "module": "zoho"
- "module": "protypers"
- "module": "visa1"
-```
+<Table />
+
+
+
 
 <Aside>
 <LinkCard
@@ -110,23 +102,29 @@ API ENDPOINT:  https://api.nocaptchaai.com/getTaskResult
 
 <Tabs syncKey="languages">
 <TabItem label="JavaScript">
-```JS
 
+```js
 const axios = require('axios');
 
 const url = 'https://api.nocaptchaai.com/createTask';
 
 const payload = {
-    clientKey: "userxx-2782xx2-065e-x-7daa-xxxxx",
+    clientKey: "YOUR_API_KEY",
     task: {
-        type: "GeetestClassification",
-        images: [
-            "iVBORw0KGgoAAAANSUhEUgAAASwAAAD"
-        ],
-        slice: "iVBORw0KGgoAAAANSUhEUgAAAFAAAA",
-        question: "slide",
-        websiteURL: "https://doamin.net/login"
-    }
+        type: "ImageToTextTask",
+        module: "common",
+        body: "base64image", 
+        websiteURL: "website URL",
+        phrase: false,
+        case: true,
+        numeric: 0,
+        math: false,
+        minLength: 1,
+        maxLength: 5,
+        score: 0.8,
+        comment: "enter the text you see on the image"
+    },
+    languagePool: "en"
 };
 
 axios.post(url, payload, {
@@ -140,236 +138,125 @@ axios.post(url, payload, {
 .catch(error => {
     console.error('Error:', error);
 });
-
 ```
 </TabItem>
 
-  <TabItem label="Python">
+<TabItem label="Python">
 
-  ```py
-
+```py
 import requests
 import json
 
-# URL to which the request will be sent
 url = 'https://api.nocaptchaai.com/createTask'
 
-# Updated Payload data
 payload = {
-    "clientKey": "userxx-2782xx2-065e-x-7daa-xxxxx",
+    "clientKey": "YOUR_API_KEY",
     "task": {
-        "type": "GeetestClassification",
-        "images": [
-            "iVBORw0KGgoAAAANSUhEUgAAASwAAAD"
-        ],
-        "slice": "iVBORw0KGgoAAAANSUhEUgAAAFAAAA",
-        "question": "slide",
-        "websiteURL": "https://doamin.net/login"
-    }
+        "type": "ImageToTextTask",
+        "module": "common",
+        "body": "base64image",
+        "websiteURL": "website URL",
+        "phrase": False,
+        "case": True,
+        "numeric": 0,
+        "math": False,
+        "minLength": 1,
+        "maxLength": 5,
+        "score": 0.8,
+        "comment": "enter the text you see on the image"
+    },
+    "languagePool": "en"
 }
 
-# Headers (if needed, you can adjust as necessary)
 headers = {
     'Content-Type': 'application/json'
 }
 
-# Send POST request
 response = requests.post(url, headers=headers, json=payload)
-
-# Print the response
 print(response.text)
-
-
 ```
-  
-  </TabItem>
+</TabItem>
 
-  <TabItem label="Go">
-    ```go
+<TabItem label="Go">
+
+```go
 package main
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"log"
-	"net/http"
+    "bytes"
+    "encoding/json"
+    "fmt"
+    "log"
+    "net/http"
 )
 
 type Task struct {
-	ClientKey string `json:"clientKey"`
-	Task      TaskDetails `json:"task"`
+    ClientKey   string      `json:"clientKey"`
+    TaskDetails TaskDetails `json:"task"`
+    LanguagePool string     `json:"languagePool"`
 }
 
 type TaskDetails struct {
-	Type        string   `json:"type"`
-	Images      []string `json:"images"`
-	Slice       string   `json:"slice"`
-	Question    string   `json:"question"`
-	WebsiteURL  string   `json:"websiteURL"`
+    Type       string   `json:"type"`
+    Module     string   `json:"module"`
+    Body       string   `json:"body"`
+    WebsiteURL string   `json:"websiteURL"`
+    Phrase     bool     `json:"phrase"`
+    Case       bool     `json:"case"`
+    Numeric    int      `json:"numeric"`
+    Math       bool     `json:"math"`
+    MinLength  int      `json:"minLength"`
+    MaxLength  int      `json:"maxLength"`
+    Score      float64  `json:"score"`
+    Comment    string   `json:"comment"`
 }
 
 func main() {
-	url := "https://api.nocaptchaai.com/createTask"
+    url := "https://api.nocaptchaai.com/createTask"
 
-	taskData := Task{
-		ClientKey: "userxx-2782xx2-065e-x-7daa-xxxxx",
-		Task: TaskDetails{
-			Type:       "GeetestClassification",
-			Images:     []string{"iVBORw0KGgoAAAANSUhEUgAAASwAAAD"},
-			Slice:      "iVBORw0KGgoAAAANSUhEUgAAAFAAAA",
-			Question:   "slide",
-			WebsiteURL: "https://doamin.net/login",
-		},
-	}
-
-	// Marshal the payload into JSON
-	jsonData, err := json.Marshal(taskData)
-	if err != nil {
-		log.Fatalf("Error marshalling JSON: %v", err)
-	}
-
-	// Send POST request
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-	if err != nil {
-		log.Fatalf("Error creating request: %v", err)
-	}
-	req.Header.Set("Content-Type", "application/json")
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Fatalf("Error sending request: %v", err)
-	}
-	defer resp.Body.Close()
-
-	// Read and print the response
-	var responseBody []byte
-	resp.Body.Read(responseBody)
-	fmt.Println(string(responseBody))
-}
-
-```
-  
-   </TabItem>
-
-   <TabItem label="C#">
-
-   ```C#
-   using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        // URL to which the request will be sent
-        string url = "https://api.nocaptchaai.com/createTask";
-
-        // Payload data
-        var payload = new
-        {
-            clientKey = "userXXXX-04XXXX-XXX2-XeXX-XXXu-XXXb",
-            task = new
-            {
-                type = "ReCaptchaV2Classification",
-                questionType = "44",
-                image = new string[] { "/9j/4AAQSkZJRgABAgAAAQABAAD/2" },
-                question = "bicycles",
-                websiteURL = "https://example.com"
-            }
-        };
-
-        // Convert payload to JSON
-        string jsonPayload = JsonConvert.SerializeObject(payload);
-
-        // Create HttpClient instance
-        using (var client = new HttpClient())
-        {
-            // Set Content-Type header
-            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-
-            // Create the StringContent to send in the body
-            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-            try
-            {
-                // Send POST request
-                HttpResponseMessage response = await client.PostAsync(url, content);
-
-                // Ensure successful response
-                response.EnsureSuccessStatusCode();
-
-                // Read the response content
-                string responseContent = await response.Content.ReadAsStringAsync();
-
-                // Print the response
-                Console.WriteLine(responseContent);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-        }
-    }
-}
-```
-   </TabItem>
-
-   <TabItem label="Rust">
-
-   ```Rust
-   use reqwest::Client;
-use serde::{Serialize, Deserialize};
-
-#[derive(Serialize, Deserialize)]
-struct Task {
-    task: TaskDetails,
-    clientKey: String,
-}
-
-#[derive(Serialize, Deserialize)]
-struct TaskDetails {
-    r#type: String,
-    images: Vec<String>,
-    slice: String,
-    question: String,
-    websiteURL: String,
-}
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let url = "https://api.nocaptchaai.com/createTask";
-
-    let task_data = Task {
-        clientKey: "userxx-2782xx2-065e-x-7daa-xxxxx".to_string(),
-        task: TaskDetails {
-            r#type: "GeetestClassification".to_string(),
-            images: vec!["iVBORw0KGgoAAAANSUhEUgAAASwAAAD".to_string()],
-            slice: "iVBORw0KGgoAAAANSUhEUgAAAFAAAA".to_string(),
-            question: "slide".to_string(),
-            websiteURL: "https://doamin.net/login".to_string(),
+    taskData := Task{
+        ClientKey: "YOUR_API_KEY",
+        TaskDetails: TaskDetails{
+            Type:       "ImageToTextTask",
+            Module:     "common",
+            Body:       "base64image",
+            WebsiteURL: "website URL",
+            Phrase:     false,
+            Case:       true,
+            Numeric:    0,
+            Math:       false,
+            MinLength:  1,
+            MaxLength:  5,
+            Score:      0.8,
+            Comment:    "enter the text you see on the image",
         },
-    };
+        LanguagePool: "en",
+    }
 
-    let client = Client::new();
-    let res = client
-        .post(url)
-        .json(&task_data)
-        .send()
-        .await?;
+    jsonData, err := json.Marshal(taskData)
+    if err != nil {
+        log.Fatalf("Error marshalling JSON: %v", err)
+    }
 
-    let body = res.text().await?;
-    println!("{}", body);
+    req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+    if err != nil {
+        log.Fatalf("Error creating request: %v", err)
+    }
+    req.Header.Set("Content-Type", "application/json")
 
-    Ok(())
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    if err != nil {
+        log.Fatalf("Error sending request: %v", err)
+    }
+    defer resp.Body.Close()
+
+    var responseBody []byte
+    resp.Body.Read(responseBody)
+    fmt.Println(string(responseBody))
 }
 ```
-      </TabItem>
-
+</TabItem>
 </Tabs>
 
 

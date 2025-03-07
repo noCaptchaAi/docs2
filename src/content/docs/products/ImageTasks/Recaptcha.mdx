@@ -24,6 +24,9 @@ import fourTwo from "/public/demo/recaptcha/44-2.png";
 import splitOne from "/public/demo/recaptcha/1.png";
 import splitTwo from "/public/demo/recaptcha/2.png";
 import splitThree from "/public/demo/recaptcha/3.png";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
+
 
 ## ReCaptcha V2 Image Recognition
 
@@ -36,6 +39,9 @@ POST https://api.nocaptchaai.com/createTask
 Host: api.nocaptchaai.com
 Content-Type: application/json
 ```
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.ReCaptchaV2} />
 
 ### Available Questions (ID:English)
 
@@ -131,6 +137,10 @@ Content-Type: application/json
      </CardGrid>
   </TabItem>
 </Tabs>
+
+
+
+
 
 ## Task Request Format
 

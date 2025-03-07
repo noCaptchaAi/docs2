@@ -13,6 +13,9 @@ import { Steps } from "@astrojs/starlight/components";
 import { Card, CardGrid } from "@astrojs/starlight/components";
 import { LinkCard } from "@astrojs/starlight/components";
 import LinkButtons from "../../../../components/Promo.astro";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
+
 
 # MTCaptcha ImageToText Task
 
@@ -29,6 +32,11 @@ Host: api.nocaptchaai.com
 Content-Type: application/json
 ```
 
+
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.MTCaptcha} />
+
 ### Module Name
 ```
  "module": "mtcaptcha"
@@ -41,6 +49,7 @@ Content-Type: application/json
   description="Conatct for custom OCR model solutions. 95+ accuracy. 99% Uptime"
 />
 </Aside>
+
 
 
 # Request

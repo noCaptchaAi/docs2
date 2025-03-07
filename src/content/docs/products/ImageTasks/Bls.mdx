@@ -13,6 +13,9 @@ import { Steps } from "@astrojs/starlight/components";
 import { Card, CardGrid } from "@astrojs/starlight/components";
 import { LinkCard } from "@astrojs/starlight/components";
 import LinkButtons from "../../../../components/Promo.astro";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
+
 
 ## BLS (ImageToText/OCR) : Image Charecter/Digit Recognition
 
@@ -25,6 +28,9 @@ POST https://api.nocaptchaai.com/createTask
 Host: api.nocaptchaai.com
 Content-Type: application/json
 ```
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.Bls} />
 
 <LinkCard
   title="Need Custom OCR model solutions (One time Fee Applied) ?"
@@ -50,6 +56,10 @@ Content-Type: application/json
  "module": "protypers"
  "module": "visa1"
 ```
+
+
+
+
 
 ### Request Format
 
