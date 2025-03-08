@@ -44,7 +44,7 @@ import tableData from "../data/TableData.json";
   </table>
 </div> -->
 <div class="w-full rounded-lg">
-    <div class="grid grid-cols-5 bg-gray-700 text-white border border-gray-700 rounded-lg">
+    <div class="grid grid-cols-5 dark:bg-gray-700 dark:text-white border border-gray-700 rounded-lg">
       <div class="flex items-center justify-center font-bold border border-gray-700 mt-[16px]">Category</div>
       <div class="flex items-center justify-center font-bold border border-gray-700">Queries</div>
       <div class="flex items-center justify-center font-bold border border-gray-700">Examples</div>
@@ -53,9 +53,9 @@ import tableData from "../data/TableData.json";
   
       {tableData.map((row: { category: string; queries: string; examples: string[] | string; precision: string; updatedOn: string; }) => (
         <>
-          <div class="p-3 border border-gray-700 bg-gray-800">{row.category}</div>
-          <div class="p-3 border border-gray-700 bg-gray-800 flex items-center justify-center">{row.queries}</div>
-          <div class="p-3 border border-gray-700 bg-gray-800 flex flex-wrap gap-2">
+          <div class="p-3 border border-gray-700 dark:bg-gray-800">{row.category}</div>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 flex items-center justify-center">{row.queries}</div>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 flex flex-wrap gap-2">
             {Array.isArray(row.examples) ? (
               row.examples.map((img: string) => (
                 <img src={img} alt="Example" class="w-24 h-auto rounded-lg" />
@@ -64,8 +64,8 @@ import tableData from "../data/TableData.json";
               <img src={row.examples} alt="Example" class="w-24 h-auto rounded-lg" />
             )}
           </div>
-          <div class="p-3 border border-gray-700 bg-gray-800 flex items-center justify-center">{row.precision}</div>
-          <div class="p-3 border border-gray-700 bg-gray-800 flex items-center justify-center">{row.updatedOn}</div>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 flex items-center justify-center">{row.precision}</div>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 flex items-center justify-center">{row.updatedOn}</div>
         </>
       ))}
     </div>
