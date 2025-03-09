@@ -1,0 +1,234 @@
+---
+title: Comprehensive Guide to CAPTCHA Solutions
+description: A detailed overview of different CAPTCHA types and solving methods
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Icon } from '@astrojs/starlight/components';
+import { Badge } from '@astrojs/starlight/components';
+
+# CAPTCHA Solutions Review <Badge text='Updated 2025'  variant="success"/>
+
+This comprehensive guide explores various CAPTCHA types and their solutions, demonstrating how noCaptcha AI handles different verification challenges.
+
+## Quick Overview
+
+<CardGrid stagger>
+  <Card title="Supported Types" icon="puzzle">
+    Multiple CAPTCHA types supported including reCAPTCHA v2/v3, mtCaptcha, and more.
+  </Card>
+  <Card title="Success Rate" icon="star">
+    High success rate across all CAPTCHA types with advanced AI solutions.
+  </Card>
+  <Card title="Integration" icon="setting">
+    Easy integration with multiple programming languages and platforms.
+  </Card>
+  <Card title="24/7 Support" icon="seti:clock">
+    Round-the-clock technical support and documentation.
+  </Card>
+</CardGrid>
+
+## CAPTCHA Types and Solutions
+
+### reCAPTCHA Solutions
+
+<Tabs>
+  <TabItem label="reCAPTCHA v2">
+    <Card title="Checkbox Challenge">
+      <Icon name="check" size="1.5rem" /> **Type:** Checkbox-based verification
+      
+      **Solution Process:**
+      1. AI analyzes the checkbox pattern
+      2. Simulates human-like clicking behavior
+      3. Handles secondary image challenges
+      
+      <Badge text='98% Success Rate'  variant="success"/>
+    </Card>
+  </TabItem>
+  <TabItem label="reCAPTCHA v3">
+    <Card title="Score-Based System">
+      <Icon name="random" size="1.5rem" /> **Type:** Background scoring system
+      
+      **Features:**
+      - Invisible verification
+      - Behavioral analysis
+      - Token-based validation
+      
+        <Badge text='95% Success Rate'  variant="success"/>
+    </Card>
+  </TabItem>
+</Tabs>
+
+### Advanced CAPTCHA Types
+
+<CardGrid>
+  <Card title="mtCaptcha" icon="image">
+    <Icon name="picture" size="1.5rem" />
+    **Challenge Type:** Image Recognition
+    
+    - Pattern matching
+    - Object identification
+    - Sequence completion
+    
+     <Badge text='Advanced AI Solution'  variant="success"/>
+  </Card>
+  
+  <Card title="Click & Rotate" icon="rotate">
+    <Icon name="mouse" size="1.5rem" />
+    **Challenge Type:** Interactive
+    
+    - Image rotation
+    - Object clicking
+    - Pattern arrangement
+    
+    <Badge text='96% Accuracy'  variant="success"/>
+  </Card>
+</CardGrid>
+
+### Enterprise Solutions
+
+<Tabs>
+  <TabItem label="AWS WAF">
+    <Card title="AWS WAF CAPTCHA">
+      <Icon name="aws" size="1.5rem" />
+      
+      **Features:**
+      - Token generation
+      - WAF integration
+      - Enterprise-grade security
+      
+         <Badge text='Enterprise Ready'  variant="success"/>
+    </Card>
+  </TabItem>
+  <TabItem label="Geetest">
+    <Card title="Geetest CAPTCHA">
+      <Icon name="security" size="1.5rem" />
+      
+      **Features:**
+      - Behavioral analysis
+      - Slider verification
+      - AI-powered detection
+      
+       <Badge text='Advanced'  variant="success"/>
+    </Card>
+  </TabItem>
+</Tabs>
+
+## Integration Guide
+
+<CardGrid>
+  <Card title="Quick Start" icon="rocket">
+    ```javascript
+    import { NoCaptchaAI } from 'nocaptcha-ai';
+    
+    const solver = new NoCaptchaAI({
+      apiKey: 'your-api-key'
+    });
+    ```
+  </Card>
+  
+  {/* <Card title="Configuration" icon="setting">
+    ```javascript
+    // Configure solver settings
+    await solver.configure({
+      type: 'recaptcha-v2',
+      timeout: 30000,
+      retries: 3
+    });
+    ```
+  </Card> */}
+</CardGrid>
+
+## Performance Metrics
+
+<Tabs>
+  <TabItem label="Success Rates">
+    | CAPTCHA Type | Rate | Status |
+    |--------------|------|---------|
+    | reCAPTCHA v2 | 98% | <Badge text='Excellent'  variant="success"/> |
+    | reCAPTCHA v3 | 95% | <Badge text='Great'  variant="success"/> |
+    | mtCaptcha | 97% | <Badge  text='Excellent' variant="success"/> |
+    | Click & Rotate | 96% | <Badge text='Excellent'  variant="success"/> |
+    | AWS WAF | 94% | <Badge text='Great'  variant="success"/> |
+    | Geetest | 93% | <Badge text='Great'  variant="success"/> |
+  </TabItem>
+  
+  <TabItem label="Response Time">
+    | CAPTCHA Type | Average Time |
+    |--------------|-------------|
+    | reCAPTCHA v2 | 2.5s |
+    | reCAPTCHA v3 | 1.8s |
+    | mtCaptcha | 3.2s |
+    | Others | 2.8s |
+  </TabItem>
+</Tabs>
+
+## Best Practices
+
+<CardGrid>
+  <Card title="Regular Updates" icon="approve-check-circle">
+    - Keep the solution updated
+    - Monitor success rates
+    - Adjust parameters as needed
+  </Card>
+  
+  <Card title="Error Handling" icon="warning">
+    - Implement proper fallbacks
+    - Monitor failed attempts
+    - Use retry mechanisms
+  </Card>
+  
+  <Card title="Optimization" icon="starlight">
+    - Cache results when possible
+    - Use parallel processing
+    - Implement rate limiting
+  </Card>
+  
+  <Card title="Security" icon="seti:graphql">
+    - Follow security guidelines
+    - Implement rate limiting
+    - Monitor for abuse
+  </Card>
+</CardGrid>
+
+## Additional Resources
+
+<CardGrid>
+  <Card title="Documentation" icon="document">
+    [View Full Documentation](/docs) <Badge text='Latest' variant="default"/>
+  </Card>
+  
+  <Card title="API Reference" icon="seti:json">
+    [API Documentation](/api) <Badge text='v2.0' variant="success"/>
+  </Card>
+  
+  <Card title="Support" icon="discourse">
+    [Get Help](/support) <Badge text='24/7' variant="note"/>
+  </Card>
+</CardGrid>
+
+{/* <style>
+.card-grid {
+  margin: 2rem 0;
+}
+
+.badge {
+  margin-left: 0.5rem;
+}
+
+table {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+</style> */}

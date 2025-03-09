@@ -1,0 +1,77 @@
+---
+title: Introduction
+description: A guide in my new Starlight docs site.
+---
+
+import GroupName from "../../../components/GroupName.astro";
+import { Card, CardGrid } from "../../../components/components";
+import {
+  Icon,
+  LinkCard,
+  LinkButton,
+  Aside,
+} from "@astrojs/starlight/components";
+import Customcard from "../../../components/Customcard.astro";
+
+<GroupName>Getting Started</GroupName>
+
+<Aside title="Quickstart">
+  <LinkCard title="Quickstart with Extension!" href="/start/quickstart" />
+</Aside>
+
+<Aside type="tip">
+  <LinkCard
+    title="Download Browser Extension ☁️"
+    href="https://docs.nocaptchaai.com/extension"
+  />
+  <LinkCard title="Get Free APIKEY 👋" href="https://dash.nocaptchaai.com" />
+  <LinkCard title="Join Discord 🔥" href="https://discord.nocaptchaai.com" />
+  <LinkCard title="Join Telegram 🔥" href="https://telegram.nocaptchaai.com" />
+</Aside>
+
+## Start Solving With AI Captcha
+
+<section title="NoCaptchaAi Recognitions" class="flex flex-col items-center justify-center">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 w-full max-w-[95vw]">
+
+    <Customcard
+      title="ReCAPTCHA v2"
+      imageSrc="/icons/recaptcha.png"
+      altText="ReCAPTCHA V2"
+       link="/products/imagetasks/recaptcha"
+    />
+    <Customcard
+      title="BLS OCR Text"
+      imageSrc="/icons/bls.png"
+      altText="BLS OCR"
+      link="/products/imagetasks/bls"
+    />
+    <Customcard
+      title="OCR/Text Captcha"
+      imageSrc="/icons/ocr.svg"
+      altText="BLS OCR"
+      link="/products/imagetasks/bls"
+    />
+    <Customcard
+      title="GeeTest v4 Image"
+      imageSrc="/icons/geetest.png"
+      altText="GeeTest v4"
+      link="/products/imagetasks/geetestv4/"
+    />
+
+     <Customcard
+      title="AWS Waf Image"
+      imageSrc="/icons/awswaf.png"
+      altText="AWSWAF"
+      link="/products/imagetasks/awswaf"
+    />
+     <Customcard
+      title="mtCAPTCHA"
+      imageSrc="/icons/mtcaptcha.png"
+      altText="Cloudflare Turnstile"
+      link="/products/imagetasks/mtcaptcha"
+    />
+
+  </div>
+
+</section>

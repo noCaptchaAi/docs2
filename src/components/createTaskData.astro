@@ -1,0 +1,30 @@
+---
+export interface Props {
+  tableData: {
+    columns: string[];
+    rows: string[][];
+  };
+}
+const { tableData } = Astro.props;
+---
+
+<div class="w-full overflow-x-auto rounded-lg">
+  <table class="w-full border border-gray-700 text-black dark:text-gray-200 rounded-lg">
+    <thead class="">
+      <tr class="">
+        {tableData.columns.map((col) => (
+          <th class="!ps-3 item-center border">{col}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {tableData.rows.map((row) => (
+        <tr class="border border-gray-700">
+          {row.map((cell) => (
+            <td class="!ps-3 border border-gray-700">{cell}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

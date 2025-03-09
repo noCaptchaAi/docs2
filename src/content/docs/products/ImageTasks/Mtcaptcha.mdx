@@ -1,0 +1,375 @@
+---
+title: MTCaptcha
+description: A guide in my new Starlight docs site.
+---
+
+import { Badge } from "@astrojs/starlight/components";
+import { Icon } from "@astrojs/starlight/components";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { Code } from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components";
+import { LinkButton } from "@astrojs/starlight/components";
+import { Steps } from "@astrojs/starlight/components";
+import { Card, CardGrid } from "@astrojs/starlight/components";
+import { LinkCard } from "@astrojs/starlight/components";
+import LinkButtons from "../../../../components/Promo.astro";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
+
+
+# MTCaptcha ImageToText Task
+
+with this `POST` request you can solve Charecter Recognition image challenges.
+
+
+<LinkButtons />
+
+
+
+```
+POST https://api.nocaptchaai.com/createTask
+Host: api.nocaptchaai.com
+Content-Type: application/json
+```
+
+
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.MTCaptcha} />
+
+### Module Name
+```
+ "module": "mtcaptcha"
+```
+
+<Aside>
+<LinkCard
+  title="Need Custom OCR Captcha solutions?"
+  href="mailto:ai@nocaptchaai.com"
+  description="Conatct for custom OCR model solutions. 95+ accuracy. 99% Uptime"
+/>
+</Aside>
+
+
+
+# Request
+
+```json
+{
+  "clientKey": "YOUR_API_KEY", // Get API_KEY from https://NoCaptchaAi.com
+  "task": {
+    "type": "ImageToTextTask",
+    "module": "mtcaptcha", // "module_001", "module_002", ...
+    "body": "base64image" or ["base64image", "base64image"], // string(single) or array(multiple) of base64 of the main images
+    "websiteURL": "website URL", // source url to improve accuracy
+    "case": true,
+    "minLength": 4,
+    "maxLength": 8,
+  },
+  "languagePool": "en"
+}
+```
+
+# Response
+
+```
+PATH : /getTaskResult
+API ENDPOINT:  https://api.nocaptchaai.com/getTaskResult
+```
+
+```json
+{
+  "errorId": 0,
+  "status": "ready",
+  "solution": {
+    "text": "hello world"
+  },
+  "cost": "0.00025",
+  "ip": "1.2.3.4",
+  "createTime": 1692808229,
+  "endTime": 1692808326,
+  "solveCount": 1
+}
+```
+
+
+
+
+
+## API Testing Example Scripts
+    (Copy, Edit and Implement) 
+
+
+<Tabs syncKey="languages">
+<TabItem label="JavaScript">
+```JS
+
+const axios = require('axios');
+
+const url = 'https://api.nocaptchaai.com/createTask';
+
+const payload = {
+    clientKey: "userxx-2782xx2-065e-x-7daa-xxxxx",
+    task: {
+        type: "GeetestClassification",
+        images: [
+            "iVBORw0KGgoAAAANSUhEUgAAASwAAAD"
+        ],
+        slice: "iVBORw0KGgoAAAANSUhEUgAAAFAAAA",
+        question: "slide",
+        websiteURL: "https://doamin.net/login"
+    }
+};
+
+axios.post(url, payload, {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => {
+    console.log(response.data);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
+```
+</TabItem>
+
+  <TabItem label="Python">
+
+  ```py
+
+import requests
+import json
+
+# URL to which the request will be sent
+url = 'https://api.nocaptchaai.com/createTask'
+
+# Updated Payload data
+payload = {
+    "clientKey": "userxx-2782xx2-065e-x-7daa-xxxxx",
+    "task": {
+        "type": "GeetestClassification",
+        "images": [
+            "iVBORw0KGgoAAAANSUhEUgAAASwAAAD"
+        ],
+        "slice": "iVBORw0KGgoAAAANSUhEUgAAAFAAAA",
+        "question": "slide",
+        "websiteURL": "https://doamin.net/login"
+    }
+}
+
+# Headers (if needed, you can adjust as necessary)
+headers = {
+    'Content-Type': 'application/json'
+}
+
+# Send POST request
+response = requests.post(url, headers=headers, json=payload)
+
+# Print the response
+print(response.text)
+
+
+```
+  
+  </TabItem>
+
+  <TabItem label="Go">
+    ```go
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+)
+
+type Task struct {
+	ClientKey string `json:"clientKey"`
+	Task      TaskDetails `json:"task"`
+}
+
+type TaskDetails struct {
+	Type        string   `json:"type"`
+	Images      []string `json:"images"`
+	Slice       string   `json:"slice"`
+	Question    string   `json:"question"`
+	WebsiteURL  string   `json:"websiteURL"`
+}
+
+func main() {
+	url := "https://api.nocaptchaai.com/createTask"
+
+	taskData := Task{
+		ClientKey: "userxx-2782xx2-065e-x-7daa-xxxxx",
+		Task: TaskDetails{
+			Type:       "GeetestClassification",
+			Images:     []string{"iVBORw0KGgoAAAANSUhEUgAAASwAAAD"},
+			Slice:      "iVBORw0KGgoAAAANSUhEUgAAAFAAAA",
+			Question:   "slide",
+			WebsiteURL: "https://doamin.net/login",
+		},
+	}
+
+	// Marshal the payload into JSON
+	jsonData, err := json.Marshal(taskData)
+	if err != nil {
+		log.Fatalf("Error marshalling JSON: %v", err)
+	}
+
+	// Send POST request
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+	if err != nil {
+		log.Fatalf("Error creating request: %v", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatalf("Error sending request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	// Read and print the response
+	var responseBody []byte
+	resp.Body.Read(responseBody)
+	fmt.Println(string(responseBody))
+}
+
+```
+  
+   </TabItem>
+
+   <TabItem label="C#">
+
+   ```C#
+   using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        // URL to which the request will be sent
+        string url = "https://api.nocaptchaai.com/createTask";
+
+        // Payload data
+        var payload = new
+        {
+            clientKey = "userXXXX-04XXXX-XXX2-XeXX-XXXu-XXXb",
+            task = new
+            {
+                type = "ReCaptchaV2Classification",
+                questionType = "44",
+                image = new string[] { "/9j/4AAQSkZJRgABAgAAAQABAAD/2" },
+                question = "bicycles",
+                websiteURL = "https://example.com"
+            }
+        };
+
+        // Convert payload to JSON
+        string jsonPayload = JsonConvert.SerializeObject(payload);
+
+        // Create HttpClient instance
+        using (var client = new HttpClient())
+        {
+            // Set Content-Type header
+            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+            // Create the StringContent to send in the body
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            try
+            {
+                // Send POST request
+                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                // Ensure successful response
+                response.EnsureSuccessStatusCode();
+
+                // Read the response content
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                // Print the response
+                Console.WriteLine(responseContent);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+}
+```
+   </TabItem>
+
+   <TabItem label="Rust">
+
+   ```Rust
+   use reqwest::Client;
+use serde::{Serialize, Deserialize};
+
+#[derive(Serialize, Deserialize)]
+struct Task {
+    task: TaskDetails,
+    clientKey: String,
+}
+
+#[derive(Serialize, Deserialize)]
+struct TaskDetails {
+    r#type: String,
+    images: Vec<String>,
+    slice: String,
+    question: String,
+    websiteURL: String,
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let url = "https://api.nocaptchaai.com/createTask";
+
+    let task_data = Task {
+        clientKey: "userxx-2782xx2-065e-x-7daa-xxxxx".to_string(),
+        task: TaskDetails {
+            r#type: "GeetestClassification".to_string(),
+            images: vec!["iVBORw0KGgoAAAANSUhEUgAAASwAAAD".to_string()],
+            slice: "iVBORw0KGgoAAAANSUhEUgAAAFAAAA".to_string(),
+            question: "slide".to_string(),
+            websiteURL: "https://doamin.net/login".to_string(),
+        },
+    };
+
+    let client = Client::new();
+    let res = client
+        .post(url)
+        .json(&task_data)
+        .send()
+        .await?;
+
+    let body = res.text().await?;
+    println!("{}", body);
+
+    Ok(())
+}
+```
+      </TabItem>
+
+</Tabs>
+
+
+
+<Aside>
+<LinkCard
+  title="Need Custom OCR Captcha solutions?"
+  href="mailto:ai@nocaptchaai.com"
+  description="Conatct for custom OCR model solutions. 95+ accuracy. 99% Uptime"
+/>
+</Aside>
