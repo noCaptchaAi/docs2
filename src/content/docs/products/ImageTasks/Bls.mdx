@@ -116,11 +116,17 @@ Content-Type: application/json
 {
   "errorId": 0,
   "solution": {
-    "text": ["555", "830", "555", "734", "555", "555", "976", "555", "376"]
+    "text": [
+      "555", "830",
+      "555", "734",
+      "555", "555",
+      "976", "555",
+      "376"
+    ]
   },
   "status": "ready",
   "taskId": ""
-}
+} 
 ```
 
 ## API Testing Example Scripts
@@ -166,7 +172,7 @@ headers: {
 }
 })
 .then(response => {
-console.log(response.solution);
+console.log(response.data);
 })
 .catch(error => {
 console.error('Error:', error);
