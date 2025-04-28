@@ -1,8 +1,18 @@
 {
   "ImageToText": {
-    "columns": ["Properties", "Value", "Required", "Description"],
+    "columns": [
+      "Properties",
+      "Value",
+      "Required",
+      "Description"
+    ],
     "rows": [
-      ["value", "String", "Required", "ImageToTextTask"],
+      [
+        "value",
+        "String",
+        "Required",
+        "ImageToTextTask"
+      ],
       [
         "module",
         "String",
@@ -27,7 +37,12 @@
         "Optional",
         "Whether the text requires recognizing phrases"
       ],
-      ["case", "Boolean", "Optional", "Whether case sensitivity is required"],
+      [
+        "case",
+        "Boolean",
+        "Optional",
+        "Whether case sensitivity is required"
+      ],
       [
         "numeric",
         "Number",
@@ -73,9 +88,19 @@
     ]
   },
   "ReCaptchaV2": {
-    "columns": ["Properties", "Value", "Required", "Description"],
+    "columns": [
+      "Properties",
+      "Value",
+      "Required",
+      "Description"
+    ],
     "rows": [
-      ["value", "String", "Required", "ReCaptchaV2Classification"],
+      [
+        "value",
+        "String",
+        "Required",
+        "ReCaptchaV2Classification"
+      ],
       [
         "questionValue",
         "String",
@@ -106,35 +131,80 @@
         "Optional",
         "Additional metadata, including 'pageURL' and 'title'"
       ],
-      ["source", "String", "Optional", "Client source, e.g., 'chrome'"],
-      ["version", "String", "Optional", "API version, e.g., '1.0.0'"]
+      [
+        "source",
+        "String",
+        "Optional",
+        "Client source, e.g., 'chrome'"
+      ],
+      [
+        "version",
+        "String",
+        "Optional",
+        "API version, e.g., '1.0.0'"
+      ]
     ]
   },
   "GeeTestV4": {
-    "columns": ["Properties", "Value", "Required", "Description"],
+    "columns": [
+      "Properties",
+      "Value",
+      "Required",
+      "Description"
+    ],
     "rows": [
-      ["value", "String", "Required", "GeetestClassification"],
+      [
+        "value",
+        "String",
+        "Required",
+        "GeetestClassification"
+      ],
       [
         "images",
         "List[String]",
         "Required",
         "Base64-encoded images; can be an empty array or contain multiple images"
       ],
-      ["question", "String", "Required", "Value of challenge, e.g., 'slide'"],
+      [
+        "question",
+        "String",
+        "Required",
+        "Value of challenge, e.g., 'slide'"
+      ],
       [
         "websiteURL",
         "String",
         "Optional",
         "Page source URL to improve accuracy"
       ],
-      ["source", "String", "Optional", "Client source, e.g., 'chrome'"],
-      ["version", "String", "Optional", "API version, e.g., '1.0.0'"]
+      [
+        "source",
+        "String",
+        "Optional",
+        "Client source, e.g., 'chrome'"
+      ],
+      [
+        "version",
+        "String",
+        "Optional",
+        "API version, e.g., '1.0.0'"
+      ]
     ]
   },
   "Bls": {
-    "columns": ["Properties", "Value", "Required", "Description"],
+    "columns": [
+      "Properties",
+      "Value",
+      "Required",
+      "Description"
+    ],
     "rows": [
-      ["value", "String", "Required", "ImageToTextTask"],
+      [
+        "value",
+        "String",
+        "Required",
+        "ImageToTextTask"
+      ],
       [
         "module",
         "String",
@@ -153,8 +223,18 @@
         "Optional",
         "Page source URL to improve accuracy"
       ],
-      ["phrase", "Boolean", "Optional", "Whether to include phrases"],
-      ["case", "Boolean", "Optional", "Whether case sensitivity is required"],
+      [
+        "phrase",
+        "Boolean",
+        "Optional",
+        "Whether to include phrases"
+      ],
+      [
+        "case",
+        "Boolean",
+        "Optional",
+        "Whether case sensitivity is required"
+      ],
       [
         "numeric",
         "Integer",
@@ -167,9 +247,24 @@
         "Optional",
         "Whether mathematical recognition is needed"
       ],
-      ["minLength", "Integer", "Optional", "Minimum length of extracted text"],
-      ["maxLength", "Integer", "Optional", "Maximum length of extracted text"],
-      ["score", "Float", "Optional", "Expected matching score (0.8 - 1)"],
+      [
+        "minLength",
+        "Integer",
+        "Optional",
+        "Minimum length of extracted text"
+      ],
+      [
+        "maxLength",
+        "Integer",
+        "Optional",
+        "Maximum length of extracted text"
+      ],
+      [
+        "score",
+        "Float",
+        "Optional",
+        "Expected matching score (0.8 - 1)"
+      ],
       [
         "comment",
         "String",
@@ -179,9 +274,19 @@
     ]
   },
   "AwsWaf": {
-    "columns": ["Properties", "Value", "Required", "Description"],
+    "columns": [
+      "Properties",
+      "Value",
+      "Required",
+      "Description"
+    ],
     "rows": [
-      ["value", "String", "Required", "AwsWafClassification"],
+      [
+        "value",
+        "String",
+        "Required",
+        "AwsWafClassification"
+      ],
       [
         "images",
         "List[String]",
@@ -203,16 +308,95 @@
     ]
   },
   "MTCaptcha": {
-    "columns": ["Properties", "Value", "Required", "Description"],
+    "columns": [
+      "Properties",
+      "Value",
+      "Required",
+      "Description"
+    ],
     "rows": [
-        ["value", "String", "Required", "ImageToTextTask"],
-        ["module", "String", "Optional", "Module used for solving (e.g., 'mtcaptcha', 'module_001')"],
-        ["images", "List[String] or String", "Required", "Base64-encoded image(s); can be a single string or an array of strings"],
-        ["websiteURL", "String", "Optional", "Page source URL to improve accuracy"],
-        ["case", "Boolean", "Optional", "Whether the text is case-sensitive"],
-        ["minLength", "Integer", "Optional", "Minimum length of expected text"],
-        ["maxLength", "Integer", "Optional", "Maximum length of expected text"],
-        ["languagePool", "String", "Optional", "Language used for OCR processing (e.g., 'en')"]
+      [
+        "value",
+        "String",
+        "Required",
+        "ImageToTextTask"
+      ],
+      [
+        "module",
+        "String",
+        "Optional",
+        "Module used for solving (e.g., 'mtcaptcha', 'module_001')"
+      ],
+      [
+        "images",
+        "List[String] or String",
+        "Required",
+        "Base64-encoded image(s); can be a single string or an array of strings"
+      ],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ],
+      [
+        "case",
+        "Boolean",
+        "Optional",
+        "Whether the text is case-sensitive"
+      ],
+      [
+        "minLength",
+        "Integer",
+        "Optional",
+        "Minimum length of expected text"
+      ],
+      [
+        "maxLength",
+        "Integer",
+        "Optional",
+        "Maximum length of expected text"
+      ],
+      [
+        "languagePool",
+        "String",
+        "Optional",
+        "Language used for OCR processing (e.g., 'en')"
+      ]
     ]
-}
+  },
+  "cloudflare": {
+    "columns": [
+      "Properties",
+      "Value",
+      "Required",
+      "Description"
+    ],
+    "rows": [
+      [
+        "type",
+        "String",
+        "Required",
+        "AntiCloudflareTask"
+      ],
+      [
+        "websiteURL",
+        "String",
+        "Required",
+        "WebPage source URL Required"
+      ],
+      [
+        "websiteKey",
+        "String",
+        "Required",
+        "WebPage Challenge Key URL Required"
+      ],
+      [
+        "metadata",
+        "Map<String,String>",
+        "Optional",
+        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
+      ]
+    ]
+  }
 }

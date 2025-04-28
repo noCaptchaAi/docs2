@@ -8,8 +8,8 @@ export default defineConfig({
     starlight({
       title: "NoCaptchaAi",
       logo: {
-        light: "./src/assets/dark-logo.svg",
-        dark: "./src/assets/light-logo.svg",
+        light: "./src/assets/logo.svg",
+        dark: "./src/assets/logo.svg",
       },
       favicon:"./logo/logo_light.png",
       customCss: ["./src/styles/custom.css", "./src/styles/tailwind.css"],

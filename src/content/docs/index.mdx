@@ -1,11 +1,11 @@
 ---
-title: NoCaptcha Ai Documents
-description: An approachable, performant and versatile framework for building web user interfaces.
+title: Captcha Solver Service NoCaptchaAi
+description: captcha-solving service, bypass all reCaptcha, geetest Captcha, awswaf Captcha, BLS Captcha, mtCaptcha, OCR captcha and more
 template: splash
 hero:
-  tagline: Automatic Captcha solution with API and scale to infinity in minuets with NoCaptchaAi.
-  image:
-    file: ../../assets/products.svg
+  tagline: Automatic Captcha solution with API and scale in minuets with NoCaptchaAi.
+  # image:
+  #   file: ../../assets/solutions2.svg
   actions:
     - text: Start Solving
       link: /start/introduction
@@ -40,11 +40,24 @@ import Customcard from "../../components/Customcard.astro";
     />
 
     <Customcard
-      title="BLS OCR Text"
+      title="BLS OCR Captcha"
       imageSrc="icons/bls.png"
       altText="BLS OCR"
       link="/products/imagetasks/bls"
     />
+     <Customcard
+      title="Cloudflare"
+      imageSrc="icons/turnstile.png"
+      altText="GeeTest v4"
+      link="/products/token/cloudflare/"
+    />
+      <Customcard
+      title="Turnstile"
+      imageSrc="icons/turnstile.png"
+      altText="GeeTest v4"
+      link="/products/token/turnstile/"
+    />
+
     <Customcard
       title="OCR/Text Captcha"
       imageSrc="icons/ocr.svg"
@@ -75,38 +88,34 @@ import Customcard from "../../components/Customcard.astro";
 
 </section>
 
-<section>
-<h1 class="text font-bold pb-5 text-center caret-rose-600 normal-case">
-  Why choose NoCaptchaAi?
-</h1>
 
-<Card> 
-<CardGrid stagger>
-  <Card title="Cross-Browser Solving" icon="laptop">
-    Our browser extension and mobile app are capable to handle for all major browsers and Captcha challenges. 🌐
-  </Card>
-  <Card title="Cost-effective" icon="heart">
-    Affordable pricing for businesses of all sizes, without compromising on quality. 💰
-  </Card>
+
+
+
+<section title="Stay Connected" class="flex flex-col items-center justify-center mt-20 mb-16">
+  <h2 class="text-3xl font-bold mb-8 pt-20">Support</h2>
+  <div class="flex flex-wrap gap-6 justify-center">
+
+    <LinkCard href="https://github.com/NoCaptchaAi" title="Telegram">
+      <Icon name="mdi:telegram" size="2rem" />
+    </LinkCard>
+
+    <LinkCard href="https://discord.gg/nocaptchaai" title="Discord">
+      <Icon name="mdi:discord" size="2rem" />
+    </LinkCard>
+
+    <LinkCard href="mailto:ai@nocaptchaai.com" title="Email">
+      <Icon name="mdi:email" size="2rem" />
+    </LinkCard>
+
+  </div>
+</section>
+
+
+----
+<section class="flex flex-col items-center gap-1">
+
+  <h2 class="text-3xl font-bold mb-8">NoCaptchaAi.com</h2>
   
-  <Card title="Blazing fast" icon="rocket">
-    Solve captchas faster, means more time for you to do what you love. ⚡
-  </Card>
-
-<Card title="Reliable" icon="heart">
-  3+ years of experience and a proven track record. No compromise on quality and
-  service uptime 💪
-</Card>
-
-<Card title="Secure" icon="setting">
-  We take privacy seriously, Your data is safe with us, thanks to top-notch
-  encryption. 🔐
-</Card>
-
-<Card title="Scalable" icon="rocket">
-  500+ business trust us with their enterprise needs. 🚀
-</Card>
-</CardGrid>
-</Card>
-
+  <p>©️ 2025 All rights reserved</p>
 </section>
