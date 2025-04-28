@@ -23,28 +23,45 @@ import Customcard from "../../../components/Customcard.astro";
 
 Please visit https://dash.nocaptchaai.com and create your free account.
 
-> Enter email, solve captcha, wait for otp
-> Enter otp, username, password and click signup
-> you can now login
-> couldn't create an account? please chat us or email ai@nocaptchaai.com
+Step 1 > Enter email, solve captcha, wait for otp
+
+Step 2 > Enter otp, username, password and click signup
+
+Step 3 > you can now login
+
+Step 4 > couldn't create an account? please chat us or email ai@nocaptchaai.com
 
 ## Start Solving
 
-<section title="NoCaptchaAi Recognitions" class="pt-10 flex flex-col items-center justify-center">
+<section title="NoCaptchaAi Recognitions" class="flex flex-col items-center justify-center">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 w-full max-w-[95vw]">
 
     <Customcard
       title="ReCAPTCHA v2"
       imageSrc="/icons/recaptcha.png"
       altText="ReCAPTCHA V2"
-       link="/products/imagetasks/recaptcha"
+      link="/products/imagetasks/recaptcha/"
     />
+
     <Customcard
-      title="BLS OCR Text"
+      title="BLS OCR Captcha"
       imageSrc="/icons/bls.png"
       altText="BLS OCR"
       link="/products/imagetasks/bls"
     />
+     <Customcard
+      title="Cloudflare"
+      imageSrc="/icons/turnstile.png"
+      altText="GeeTest v4"
+      link="/products/token/cloudflare/"
+    />
+      <Customcard
+      title="Turnstile"
+      imageSrc="/icons/turnstile.png"
+      altText="GeeTest v4"
+      link="/products/token/turnstile/"
+    />
+
     <Customcard
       title="OCR/Text Captcha"
       imageSrc="/icons/ocr.svg"
@@ -62,7 +79,7 @@ Please visit https://dash.nocaptchaai.com and create your free account.
       title="AWS Waf Image"
       imageSrc="/icons/awswaf.png"
       altText="AWSWAF"
-      link="/products/imagetasks/awswaf"
+      link="/products/imagetasks/awswaf/"
     />
      <Customcard
       title="mtCAPTCHA"
