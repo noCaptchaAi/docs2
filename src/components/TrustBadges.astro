@@ -1,0 +1,146 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+
+// Trust data
+const trustBadges = [
+  {
+    platform: "G2",
+    rating: 4.8,
+    reviews: 342,
+    icon: "simple-icons:g2",
+    color: "text-[#FF4A00]",
+    link: "#"
+  },
+  {
+    platform: "Capterra",
+    rating: 4.9,
+    reviews: 287,
+    icon: "simple-icons:capterra",
+    color: "text-[#00B4D3]",
+    link: "#"
+  },
+  {
+    platform: "SaaSHub",
+    rating: 4.7,
+    reviews: 156,
+    icon: "simple-icons:saashub",
+    color: "text-[#3F83F8]",
+    link: "https://www.saashub.com/nocaptcha-ai"
+  }
+];
+
+const trustedByCount = "1,000+";
+---
+
+<style is:global>
+  .trust-section {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+  }
+  
+  .dark .trust-section {
+    background: linear-gradient(135deg, rgba(15,23,42,0.28) 0%, rgba(15,23,42,0.22) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  
+  .trust-badge {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .trust-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+  }
+  
+  .stars {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .stars::before {
+    content: '★★★★★';
+    color: rgba(0,0,0,0.1);
+  }
+  
+  .dark .stars::before {
+    color: rgba(255,255,255,0.1);
+  }
+  
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+  
+  .stars-inner::before {
+    content: '★★★★★';
+    color: #F59E0B;
+  }
+</style>
+
+<div class="trust-section rounded-2xl pb-10">
+  <div class="text-center pb-2">
+    <p class="text-lg font-semibold text-slate-500 dark:text-slate-400 mb-2 tracking-wider">
+      Loved by Industry Experts
+    </p>
+    <p class="text-2xl font-bold text-slate-800 dark:text-white mb-5">
+      Trusted by {trustedByCount} Organizations Globally
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+      {['Fortune 500', 'Startups', 'Enterprises', 'Agencies', 'E-commerce'].map((item) => (
+        <span class="px-4 py-2 bg-white/50 dark:bg-slate-800/40 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300">
+          {item}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-1">
+    {trustBadges.map((badge) => (
+      <a 
+        href={badge.link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="trust-badge bg-white/70 dark:bg-slate-800/50 rounded-xl p-2 flex flex-col items-center text-center border border-slate-200/60 dark:border-slate-700/40 hover:border-sky-300/50 dark:hover:border-sky-500/30"
+      >
+        <h4 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2 pt-6">
+          {badge.platform}
+        </h4>
+        <div class="stars mb-1 text-2xl">
+          <div 
+            class="stars-inner" 
+            style={`width: ${(badge.rating / 5) * 100}%`}
+          ></div>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400">
+          {badge.rating}/5 from {badge.reviews}+ reviews
+        </p>
+      </a>
+    ))}
+  </div>
+
+  <!-- Client logos slider would go here -->
+  <!-- <div class="mt-16 opacity-80">
+    <div class="flex items-center justify-center gap-10 flex-wrap">
+      {[
+        "/clients/logo1.svg",
+        "/clients/logo2.svg",
+        "/clients/logo3.svg",
+        "/clients/logo4.svg",
+        "/clients/logo5.svg",
+      ].map((logo) => (
+        <img 
+          src={logo} 
+          alt="Client logo" 
+          class="h-8 sm:h-10 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div> -->
+</div>

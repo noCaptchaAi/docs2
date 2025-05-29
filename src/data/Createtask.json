@@ -1,0 +1,351 @@
+{
+  "ImageToText": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "ImageToTextTask"],
+      [
+        "module",
+        "String",
+        "Optional",
+        "Task module value, e.g., 'common', 'module_001'"
+      ],
+      [
+        "image",
+        "List[String]",
+        "Required",
+        "Base64 image string (single) or array of base64 images (multiple)"
+      ],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ],
+      [
+        "phrase",
+        "Boolean",
+        "Optional",
+        "Whether the text requires recognizing phrases"
+      ],
+      ["case", "Boolean", "Optional", "Whether case sensitivity is required"],
+      [
+        "numeric",
+        "Number",
+        "Optional",
+        "0: Any, 1: Only numbers, 2: Only letters"
+      ],
+      [
+        "math",
+        "Boolean",
+        "Optional",
+        "Whether the image contains a math equation"
+      ],
+      [
+        "minLength",
+        "Number",
+        "Optional",
+        "Minimum length of the recognized text"
+      ],
+      [
+        "maxLength",
+        "Number",
+        "Optional",
+        "Maximum length of the recognized text"
+      ],
+      [
+        "score",
+        "Number",
+        "Optional",
+        "Expected matching score, range: 0.8 to 1"
+      ],
+      [
+        "comment",
+        "String",
+        "Optional",
+        "Additional input describing the expected text"
+      ],
+      [
+        "languagePool",
+        "String",
+        "Optional",
+        "Language pool for text recognition, e.g., 'en'"
+      ]
+    ]
+  },
+  "ReCaptchaV2": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "ReCaptchaV2Classification"],
+      [
+        "questionValue",
+        "String",
+        "Required",
+        "Numerical identifier for the question value (e.g., '33')"
+      ],
+      [
+        "image",
+        "List[String]",
+        "Required",
+        "Base64-encoded images; can be an empty array or contain multiple images"
+      ],
+      [
+        "question",
+        "String",
+        "Required",
+        "Value of object to identify, e.g., 'cars'"
+      ],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL where the challenge appears"
+      ],
+      [
+        "metadata",
+        "Object",
+        "Optional",
+        "Additional metadata, including 'pageURL' and 'title'"
+      ],
+      ["source", "String", "Optional", "Client source, e.g., 'chrome'"],
+      ["version", "String", "Optional", "API version, e.g., '1.0.0'"]
+    ]
+  },
+  "GeeTestV4": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "GeetestClassification"],
+      [
+        "images",
+        "List[String]",
+        "Required",
+        "Base64-encoded images; can be an empty array or contain multiple images"
+      ],
+      ["question", "String", "Required", "Value of challenge, e.g., 'slide'"],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ],
+      ["source", "String", "Optional", "Client source, e.g., 'chrome'"],
+      ["version", "String", "Optional", "API version, e.g., '1.0.0'"]
+    ]
+  },
+  "Binance": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "BinanceClassification"],
+      [
+        "images",
+        "List[String]",
+        "Required",
+        "Base64-encoded images; can be an empty array or contain multiple images"
+      ],
+      ["question", "String", "Required", "Value of challenge, e.g., 'slide'"],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ]
+    ]
+  },
+  "Bls": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "ImageToTextTask"],
+      [
+        "module",
+        "String",
+        "Optional",
+        "Module identifier, e.g., 'common', 'module_001'"
+      ],
+      [
+        "body",
+        "String | List[String]",
+        "Required",
+        "Base64-encoded image; can be a single string or an array of multiple images"
+      ],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ],
+      ["phrase", "Boolean", "Optional", "Whether to include phrases"],
+      ["case", "Boolean", "Optional", "Whether case sensitivity is required"],
+      [
+        "numeric",
+        "Integer",
+        "Optional",
+        "Numeric requirement: 0 (any), 1 (only numbers), 2 (no numbers)"
+      ],
+      [
+        "math",
+        "Boolean",
+        "Optional",
+        "Whether mathematical recognition is needed"
+      ],
+      ["minLength", "Integer", "Optional", "Minimum length of extracted text"],
+      ["maxLength", "Integer", "Optional", "Maximum length of extracted text"],
+      ["score", "Float", "Optional", "Expected matching score (0.8 - 1)"],
+      [
+        "comment",
+        "String",
+        "Optional",
+        "Description of expected text from the image"
+      ]
+    ]
+  },
+  "AwsWaf": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "AwsWafClassification"],
+      [
+        "images",
+        "List[String]",
+        "Required",
+        "Base64 image strings; aws:grid supports up to 9 images at a time"
+      ],
+      [
+        "question",
+        "String",
+        "Required",
+        "Specifies the question value, e.g., 'aws:grid:bag'"
+      ],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ]
+    ]
+  },
+  "MTCaptcha": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "ImageToTextTask"],
+      [
+        "module",
+        "String",
+        "Optional",
+        "Module used for solving (e.g., 'mtcaptcha', 'module_001')"
+      ],
+      [
+        "images",
+        "List[String] or String",
+        "Required",
+        "Base64-encoded image(s); can be a single string or an array of strings"
+      ],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ],
+      ["case", "Boolean", "Optional", "Whether the text is case-sensitive"],
+      ["minLength", "Integer", "Optional", "Minimum length of expected text"],
+      ["maxLength", "Integer", "Optional", "Maximum length of expected text"],
+      [
+        "languagePool",
+        "String",
+        "Optional",
+        "Language used for OCR processing (e.g., 'en')"
+      ]
+    ]
+  },
+  "cloudflare": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["type", "String", "Required", "AntiCloudflareTask"],
+      ["websiteURL", "String", "Required", "WebPage source URL Required"],
+      [
+        "websiteKey",
+        "String",
+        "Required",
+        "WebPage Challenge Key URL Required"
+      ],
+      [
+        "metadata",
+        "Map<String,String>",
+        "Optional",
+        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
+      ]
+    ]
+  },"turnstile": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["type", "String", "Required", "AntiCloudflareTask"],
+      ["websiteURL", "String", "Required", "WebPage source URL Required"],
+      [
+        "websiteKey",
+        "String",
+        "Required",
+        "WebPage Challenge Key URL Required"
+      ],
+      [
+        "metadata",
+        "Map<String,String>",
+        "Optional",
+        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
+      ]
+    ]
+  },
+  "MTCaptchaToken": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["type", "String", "Required", "AntiCloudflareTask"],
+      ["websiteURL", "String", "Required", "WebPage source URL Required"],
+      [
+        "websiteKey",
+        "String",
+        "Required",
+        "WebPage Challenge Key URL Required"
+      ],
+      [
+        "metadata",
+        "Map<String,String>",
+        "Optional",
+        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
+      ]
+    ]
+  },
+  "GeeTestv4Token": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["type", "String", "Required", "AntiCloudflareTask"],
+      ["websiteURL", "String", "Required", "WebPage source URL Required"],
+      [
+        "websiteKey",
+        "String",
+        "Required",
+        "WebPage Challenge Key URL Required"
+      ],
+      [
+        "metadata",
+        "Map<String,String>",
+        "Optional",
+        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
+      ]
+    ]
+  },
+  "GeeTestv3Token": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["type", "String", "Required", "AntiCloudflareTask"],
+      ["websiteURL", "String", "Required", "WebPage source URL Required"],
+      [
+        "websiteKey",
+        "String",
+        "Required",
+        "WebPage Challenge Key URL Required"
+      ],
+      [
+        "metadata",
+        "Map<String,String>",
+        "Optional",
+        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+[
+  {
+    "module_id": "BLS Captcha",
+    "images": "/icons/bls_img.png",
+    "precision": "92%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "MTCaptcha",
+    "images": "/icons/mtcaptcha_img.png",
+    "precision": "92%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "probot",
+    "images": "/icons/probot.png",
+    "precision": "90%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "common",
+    "images": "/icons/common_image.png",
+    "precision": "92%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+    "images": "/icons/201_1.png",
+    "precision": "92%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+    "images": ["/icons/201_2.jpg"],
+    "precision": "95%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+    "images": ["/icons/201_3.png"],
+    "precision": "94%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+    "images": ["/icons/201_4.png"],
+    "precision": "97%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+
+    "images": ["/icons/201_5.jpg"],
+    "precision": "98%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+
+    "images": ["/icons/201_6.png"],
+    "precision": "93%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+
+    "images": ["/icons/201_7.png"],
+    "precision": "96%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+
+    "images": ["/icons/201_8.jpg"],
+    "precision": "94%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_201",
+
+    "images": ["/icons/201_9.png"],
+    "precision": "90%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_10.png"],
+    "precision": "92%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_11.png"],
+    "precision": "98%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_12.jpg"],
+    "precision": "95%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_13.png"],
+    "precision": "97%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_15.png"],
+    "precision": "94%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_16.png"],
+    "precision": "95%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_13.png"],
+    "precision": "93%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_15.png"],
+    "precision": "90%",
+    "updatedOn": "2025-03-07"
+  },
+  {
+    "module_id": "module_nocap_202",
+
+    "images": ["/icons/202_16.png"],
+    "precision": "98%",
+    "updatedOn": "2025-03-07"
+  }
+]

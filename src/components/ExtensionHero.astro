@@ -1,0 +1,374 @@
+---
+// src/components/ExtensionHero.astro
+// @ts-nocheck - Retaining if you have specific TS needs not covered by Astro's defaults
+
+import { Icon } from "@astrojs/starlight/components"; // Starlight's Icon component
+import GlassButton from "./GlassButton.astro";
+
+// --- Asset Imports ---
+// These paths should be from the `public` directory root
+const nocapLogoSrc = "/assets/herosec/logo-96.webp";
+const extensionPreviewSrc = "/assets/herosec/exten.svg";
+
+// --- Component Data ---
+const SOURCE_CODE_URL = "https://github.com/noCaptchaAi";
+
+// Simplified "translation" - in a real app, use props or an i18n library
+const T = {
+  title: "Browser Extensions",
+  subtitle:
+    "Experience seamless browsing with our blazing-fast, open-source captcha solvers for Chrome & Firefox.",
+  githubLinkText: "Github SDK Tools",
+  badgeText: "UPDATED with New Features!",
+};
+
+// Data for a simplified CSS/HTML dropdown or to pass to a React component
+const downloadPlatforms = [
+  {
+    name: "Chrome",
+    icon: "mdi:google-chrome",
+    links: [
+      {
+        name: "Download Chrome (Latest)",
+        url: "https://github.com/noCaptchaAi/chrome/releases/latest",
+      },
+    ],
+  },
+  {
+    name: "Firefox",
+    icon: "mdi:firefox",
+    links: [
+      {
+        name: "Download Firefox (Latest)",
+        url: "https://github.com/noCaptchaAi/firefox-extension/releases/latest",
+      },
+    ],
+  },
+];
+const defaultPlatform = downloadPlatforms[0]; // Default to Chrome for display
+
+// If you were to use a React dropdown component:
+// import ReactDownloadDropdown from './ReactDownloadDropdown.jsx'; // client:visible
+---
+
+<div
+  class="w-full flex items-center justify-center my-2 px-4 max-w-[1670px] mx-auto"
+>
+  {/* Increased my, px, added mx-auto */}
+  {/* Main Container */}
+  <div
+    class="relative w-full bg-gradient-to-br from-white via-slate-50 to-sky-100/60 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-700/50 shadow-xl dark:shadow-2xl shadow-sky-200/20 dark:shadow-blue-600/15 hover:shadow-sky-300/30 dark:hover:shadow-blue-500/25 transition-all duration-500 ease-out"
+  >
+    {/* Background Grid Pattern */}
+    <div
+      class="absolute inset-0 opacity-[0.07] dark:opacity-[0.04] pointer-events-none"
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="hero-grid-light"
+            width="40"
+            height="40"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M 40 0 L 0 0 0 40"
+              fill="none"
+              stroke="rgba(156, 163, 175, 0.4)"
+              stroke-width="0.5"></path>
+          </pattern>
+          <pattern
+            id="hero-grid-dark"
+            width="40"
+            height="40"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M 40 0 L 0 0 0 40"
+              fill="none"
+              stroke="rgba(71, 85, 105, 0.6)"
+              stroke-width="0.5"></path>
+          </pattern>
+        </defs>
+        <rect
+          width="100%"
+          height="100%"
+          fill="url(#hero-grid-light)"
+          class="dark:hidden"></rect>
+        <rect
+          width="100%"
+          height="100%"
+          fill="url(#hero-grid-dark)"
+          class="hidden dark:block"></rect>
+      </svg>
+    </div>
+
+    {/* Ambient Glow Effects */}
+    <div
+      class="absolute -top-40 -left-40 w-72 h-72 bg-gradient-radial from-sky-400/30 dark:from-sky-500/30 to-transparent rounded-full filter blur-3xl opacity-30 dark:opacity-40 pointer-events-none transition-opacity duration-500 group-hover:opacity-50"
+    >
+    </div>
+    <div
+      class="absolute -bottom-40 -right-40 w-72 h-72 bg-gradient-radial from-indigo-400/30 dark:from-indigo-500/30 to-transparent rounded-full filter blur-3xl opacity-30 dark:opacity-40 pointer-events-none transition-opacity duration-500 group-hover:opacity-50"
+    >
+    </div>
+
+    {/* Content Area */}
+    <div
+      class="relative z-10 flex flex-col md:flex-row p-6 py-8 md:p-10 lg:p-12 items-center gap-8 md:gap-12"
+    >
+      {/* Left Side: Text & Controls */}
+      <div
+        class="flex-1 flex flex-col items-center md:items-start gap-5 text-center md:text-left"
+      >
+        {/* Header */}
+        <div class="flex flex-col">
+          <img
+            src={"/logo.svg"}
+            alt="NoCaptchaAI Logo"
+            class="w-20 md:w-12 md:h-12 transition-transform duration-300 ease-out group-hover:rotate-[15deg] group-hover:scale-110"
+          />
+          <h1>NoCaptcha Ai</h1>
+          <span class="text-cyan-500">Ai Captcha Solver Service</span>
+          <h2
+            class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 dark:from-sky-400 dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent select-none"
+          >
+            {T.title}
+          </h2>
+        </div>
+
+        {/* Subtitle */}
+        <p
+          class="text-slate-600 dark:text-slate-300/90 text-base md:text-lg max-w-md leading-relaxed"
+        >
+          {T.subtitle}
+        </p>
+
+        <div class="text-center text-lg flex flex-col gap-2">
+          <GlassButton
+            icon="rocket"
+            class="w-full flex flex-row gap-2 text-left"
+            iconPlacement="start"
+            target="_blank"
+            href="https://chromewebstore.google.com/detail/nocaptcha-ai-auto-captcha/hbnbcapieoandchfgacedlkjpdbbejgb?hl=en&utm_source=docs"
+            variant="primary"
+          >
+            Add to Chrome
+          </GlassButton>
+          <GlassButton
+            icon="seti:firefox"
+            iconPlacement="start"
+            class="w-full flex flex-row gap-2 text-left"
+            target="_blank"
+            href="https://addons.mozilla.org/en-US/firefox/addon/nocaptcha-ai-captcha-solver/?hl=en&utm_source=docs"
+            variant="primary"
+          >
+            Add to Firefox
+          </GlassButton>
+          <GlassButton
+            icon="github"
+            iconPlacement="start"
+            class="w-full flex flex-row gap-2 text-left"
+            target="_blank"
+            href="https://github.com/noCaptchaAi/NoCaptcha-Ai-Browser-Extension?hl=en&utm_source=docs"
+            variant="primary"
+          >
+            Download from Github
+          </GlassButton>
+        </div>
+
+        {/* Action Buttons Area */}
+        <div
+          class="flex flex-col gap-4 mt-5 w-full max-w-xs sm:max-w-sm items-center md:items-start"
+        >
+          {/* Source Code Link */}
+          <a
+            href={SOURCE_CODE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center justify-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 transition-colors duration-200 focus:outline-none focus:ring-1 ring-transparent group-hover:ring-sky-500/50 rounded-md px-1 py-0.5"
+          >
+            <Icon name="seti:github" class="w-10" />
+            <span>{T.githubLinkText}</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Right Side: Image with Glow */}
+      <div class="flex-shrink-0 mt-10 md:mt-0 relative group">
+        {/* group for hover effects on image-glow-wrapper and improved-badge */}
+        <div class="relative image-glow-wrapper">
+          <img
+            src={"/guide/start/extension.png"}
+            alt="Browser extension preview"
+            loading="lazy"
+            decoding="async"
+            class="relative z-[1] max-w-[500px] w-[300px] rounded-xl border-2 border-slate-300/60 dark:border-slate-700/60 shadow-lg dark:shadow-xl transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        </div>
+        {/* "Improved" Badge */}
+        <div
+          class="improved-badge absolute -top-3 -right-3 md:top-2 md:right-2 z-10 bg-gradient-to-r from-yellow-400 via-amber-400 to-orange-400 text-slate-900 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-lg cursor-default select-none transform -rotate-6 group-hover:rotate-0"
+        >
+          {T.badgeText}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* CSS (same as before, with minor adjustment for .dark override) */
+  :root {
+    --glow-color-1-light: #ec4899; /* Pink */
+    --glow-color-2-light: #d946ef; /* Fuchsia */
+    --glow-color-3-light: #a855f7; /* Purple */
+    --glow-color-4-light: #f59e0b; /* Amber */
+    --glow-color-5-light: #facc15; /* Yellow */
+    --glow-color-6-light: #fb923c; /* Orange */
+
+    --glow-color-1-dark: #fda4af; /* Rose 300 */
+    --glow-color-2-dark: #f0abfc; /* Fuchsia 300 */
+    --glow-color-3-dark: #c4b5fd; /* Violet 300 */
+    --glow-color-4-dark: #fcd34d; /* Amber 300 */
+    --glow-color-5-dark: #fde047; /* Yellow 300 */
+    --glow-color-6-dark: #fdba74; /* Orange 300 */
+  }
+
+  /* Ensure this applies correctly based on Starlight's theme toggle */
+  /* If Starlight uses html[data-theme="dark"], use that selector instead of just .dark */
+  html.dark:root,
+  :root[data-theme="dark"] {
+    --glow-color-1-light: var(--glow-color-1-dark);
+    --glow-color-2-light: var(--glow-color-2-dark);
+    --glow-color-3-light: var(--glow-color-3-dark);
+    --glow-color-4-light: var(--glow-color-4-dark);
+    --glow-color-5-light: var(--glow-color-5-dark);
+    --glow-color-6-light: var(--glow-color-6-dark);
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes neon-fire-rotate {
+    0% {
+      --angle: 0deg;
+    }
+    100% {
+      --angle: 360deg;
+    }
+  }
+
+  .image-glow-wrapper::before,
+  .image-glow-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -6px; /* Slightly larger glow distance */
+    z-index: 0; /* Behind the image but above parent bg */
+    border-radius: calc(
+      0.75rem + 6px
+    ); /* Match image rounding (rounded-xl is 0.75rem) + inset */
+    filter: blur(20px);
+    opacity: 0.45;
+    transition:
+      opacity 0.4s ease-out,
+      filter 0.4s ease-out,
+      transform 0.4s ease-out;
+    transform: scale(1);
+    will-change: opacity, filter, transform;
+  }
+
+  .image-glow-wrapper::before {
+    background: conic-gradient(
+      from var(--angle),
+      var(--glow-color-1-light),
+      var(--glow-color-2-light),
+      var(--glow-color-3-light),
+      var(--glow-color-1-light)
+    );
+    animation: neon-fire-rotate 5s linear infinite; /* Sped up slightly */
+  }
+
+  .image-glow-wrapper::after {
+    background: conic-gradient(
+      from var(--angle),
+      var(--glow-color-4-light),
+      var(--glow-color-5-light),
+      var(--glow-color-6-light),
+      var(--glow-color-4-light)
+    );
+    animation: neon-fire-rotate 7s linear infinite reverse; /* Sped up slightly */
+    filter: blur(24px);
+    opacity: 0.35;
+  }
+
+  .group:hover .image-glow-wrapper::before,
+  .group:hover .image-glow-wrapper::after {
+    opacity: 0.9;
+    filter: blur(16px);
+    transform: scale(1.08);
+  }
+
+  @keyframes improved-pulse-shine {
+    0%,
+    100% {
+      transform: scale(1) rotate(-6deg); /* Keep slight angle */
+      box-shadow: 0 0 4px 0px rgba(253, 186, 116, 0.4);
+      filter: brightness(1);
+    }
+    50% {
+      transform: scale(1.03) rotate(-6deg); /* Pulse scale */
+      box-shadow: 0 0 10px 4px rgba(253, 186, 116, 0.6);
+      filter: brightness(1.15);
+    }
+  }
+
+  @keyframes improved-hover-sparkle {
+    0% {
+      background-position: -120% 0;
+    } /* Start further off */
+    100% {
+      background-position: 120% 0;
+    } /* End further off */
+  }
+
+  .improved-badge {
+    animation: improved-pulse-shine 2.8s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    transform: rotate(-6deg); /* Initial slight angle */
+  }
+
+  .improved-badge::after {
+    content: "";
+    position: absolute;
+    top: -10%; /* Slightly larger to cover angled edges */
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(
+      100deg,
+      /* Angled shine */ transparent 30%,
+      rgba(255, 255, 255, 0.5) 50%,
+      /* Brighter, narrower shine */ transparent 70%
+    );
+    background-size: 250% 100%; /* Wider gradient for smoother effect */
+    background-position: 150% 0;
+    transition: background-position 0.7s ease-out;
+  }
+
+  .group:hover .improved-badge::after {
+    animation: improved-hover-sparkle 0.7s ease-out forwards;
+  }
+  .group:hover .improved-badge {
+    animation-play-state: paused;
+    transform: scale(1.12) rotate(0deg); /* Straighten and pop on hover */
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1.5); /* Bouncy transition */
+  }
+  .improved-badge {
+    transition: transform 0.3s ease-out;
+  }
+</style>

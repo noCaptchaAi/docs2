@@ -1,0 +1,70 @@
+---
+export interface Row {
+  module_id: string;
+  images: string[];
+  precision: string;
+  updatedOn: string;
+}
+
+// const { data } = Astro.props;
+import tableData from "../data/TableData.json";
+---
+
+<!-- <div class="w-full overflow-x-auto rounded-lg">
+  <table class="w-full border border-gray-700 text-white rounded-lg">
+    <thead class="bg-gray-900">
+      <tr>
+        <th class="p-3 border border-gray-700 w-1/5">Category</th>
+        <th class="p-3 border border-gray-700 w-1/5">Queries</th>
+        <th class="p-3 border border-gray-700 w-1/5">images</th>
+        <th class="p-3 border border-gray-700 w-1/5">Precision</th>
+        <th class="p-3 border border-gray-700 w-1/5">Updated On</th>
+      </tr>
+    </thead>
+    <tbody>
+      {tableData.map((row: { category: unknown; queries: unknown; images: string | any[] | null | undefined; precision: unknown; updatedOn: unknown; }) => (
+        <tr class="border border-gray-700 bg-gray-800">
+          <td class="p-3 border border-gray-700">{row.category}</td>
+          <td class="p-3 border border-gray-700">{row.queries}</td>
+          <td class="p-3 flex flex-wrap gap-2">
+            {Array.isArray(row.images) ? (
+              row.images.map((img: string | null | undefined) => (
+                <img src={img} alt="Example" class="w-24 h-auto rounded-lg" />
+              ))
+            ) : (
+              <img src={row.images} alt="Example" class="w-24 h-auto rounded-lg" />
+            )}
+          </td>
+          <td class="p-3 border border-gray-700">{row.precision}</td>
+          <td class="p-3 border border-gray-700">{row.updatedOn}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div> -->
+<div class="w-full rounded-lg">
+    <div class="grid grid-cols-4 dark:bg-gray-700 dark:text-white border border-gray-700 rounded-lg">
+      <div class="flex items-center justify-center font-bold border border-gray-700 mt-[16px] w-full  m-w-[200px]">Module ID</div>
+      <div class="flex items-center justify-center font-bold border border-gray-700">Images</div>
+      <div class="flex items-center justify-center font-bold border border-gray-700">Precision</div>
+      <div class="flex items-center justify-center font-bold border border-gray-700">Updated On</div>
+  
+      {tableData.map((row: { module_id: string; images: string[] | string; precision: string; updatedOn: string; }) => (
+        <>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 w-full m-w-[200px] text-xs">{row.module_id}</div>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 flex flex-wrap gap-2">
+            {Array.isArray(row.images) ? (
+              row.images.map((img: string) => (
+                <img src={img} alt="Example" class="w-24 h-auto rounded-lg" />
+              ))
+            ) : (
+              <img src={row.images} alt="Example" class="w-24 h-auto rounded-lg" />
+            )}
+          </div>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 flex items-center justify-center">{row.precision}</div>
+          <div class="p-3 border border-gray-700 dark:bg-gray-800 flex items-center justify-center">{row.updatedOn}</div>
+        </>
+      ))}
+    </div>
+  </div>
+  

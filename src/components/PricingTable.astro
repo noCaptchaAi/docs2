@@ -1,0 +1,405 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+import GlassButton from "./GlassButton.astro"; // Adjust path if needed
+
+// --- Data Structure ---
+const pricingData = [
+  {
+    icon: "/icons/recaptcha.png",
+    name: "reCAPTCHA v2",
+    methods: [
+      { type: "Recognition", price: "0.14", unit: "1000" },
+      { type: "Audio", price: "0.28", unit: "1000" },
+      { type: "Token", price: null, upcoming: true },
+    ],
+    avgSpeed: ["< 1 sec", "< 1 sec"],
+    startingPrice: "0.14",
+  },
+  {
+    icon: "/icons/recaptcha.png",
+    name: "reCAPTCHA v3",
+    methods: [
+      { type: "Token", price: null, upcoming: true },
+      { type: "Enterprise", contactSales: true },
+    ],
+    avgSpeed: ["-"],
+    startingPrice: "--",
+  },
+  {
+    icon: "/demo/ocr.jpg",
+    name: "Image To Text",
+    altIconText: "W6",
+    methods: [{ type: "Recognition", price: "0.16", unit: "1000" }],
+    avgSpeed: ["< 1 sec"],
+    startingPrice: "0.16",
+  },
+  {
+    icon: "/icons/mtcaptcha.png",
+    name: "MTCaptcha",
+    methods: [
+      { type: "Recognition", price: "0.16", unit: "1000" },
+      { type: "Token", price: null, upcoming: true },
+    ],
+    avgSpeed: ["< 1 sec"],
+    startingPrice: "0.16",
+  },
+  {
+    icon: "/icons/geetest.png",
+    name: "Geetest",
+    methods: [
+      { type: "Recognition", price: "0.22", unit: "1000" },
+      { type: "Token", price: null, upcoming: true },
+    ],
+    avgSpeed: ["0.8s"],
+    startingPrice: "0.22",
+  },
+  {
+    icon: "/icons/awswaf.png",
+    name: "AWS WAF",
+    methods: [
+      { type: "Token", price: null, upcoming: true },
+      { type: "Recognition", price: "0.30", unit: "1000" },
+    ],
+    avgSpeed: ["-", "< 1 sec"],
+    startingPrice: "0.25",
+  },
+  {
+    icon: "/icons/bls.png",
+    name: "BLS Captcha",
+    methods: [{ type: "Token", price: "0.18", unit: "1000" }],
+    avgSpeed: ["< 1 sec"],
+    startingPrice: "0.18",
+  },
+  {
+    icon: "/icons/image-to-text.svg",
+    name: "Prosopo",
+    altIconText: "P9",
+    comingSoon: true,
+    methods: [
+      { type: "Token", price: null, upcoming: true },
+      { type: "Fingerprint", price: null, upcoming: true },
+    ],
+    avgSpeed: ["-"],
+    startingPrice: "0.30",
+  },
+];
+
+const featureHighlights = [
+  {
+    icon: "rocket",
+    title: "Enterprise Scale",
+    link: "https://status.nocaptchaai.com/",
+    description:
+      "Custom solutions for high-volume needs with dedicated support.",
+  },
+  {
+    icon: "approve-check-circle",
+    title: "99.9% Uptime",
+    link: "https://status.nocaptchaai.com/",
+    description:
+      "Reliable infrastructure with multi-region failover and automatic scaling.",
+  },
+  {
+    icon: "seti:shell",
+    title: "Free Testing Credit",
+    link: "https://status.nocaptchaai.com/",
+    description:
+      "Try before you buy with free credits to test our service performance.",
+  },
+];
+---
+
+<style is:global>
+  :root {
+    --glow-opacity: 0.05;
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-container {
+    position: relative;
+    isolation: isolate;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.05),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    border-radius: var(--border-radius);
+    opacity: 0.8;
+  }
+
+  .glass-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(14, 165, 233, var(--glow-opacity)) 0deg,
+      rgba(20, 184, 166, var(--glow-opacity)) 120deg,
+      rgba(6, 182, 212, var(--glow-opacity)) 240deg,
+      rgba(14, 165, 233, var(--glow-opacity)) 360deg
+    );
+    filter: blur(20px);
+    opacity: 0.6;
+  }
+
+  .price-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 767px) {
+    .glass-container {
+      border-radius: 12px;
+    }
+  }
+</style>
+
+<div class="flex flex-col mx-auto p-1 justify-center pt-20">
+  <!-- Section Header -->
+  <div class="text-center mx-auto">
+    <h2
+      class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-800 dark:text-white mb-4"
+    >
+      Transparent Pricing
+    </h2>
+    <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+      Enterprise-grade solutions at competitive rates. Volume discounts
+      available.
+    </p>
+
+    <!-- Pricing Toggle -->
+    <div class="mt-8 flex justify-center gap-3">
+      <GlassButton
+        variant={"primary"}
+        icon="mdi:package-variant-closed"
+        class="text-sm sm:text-base cursor-pointer"
+        onclick={`event.preventDefault(); window.open("https://nocaptchaai.com/plans?from=docs_packages_btn", "_blank");`}
+      >
+        View Volume Packages
+      </GlassButton>
+    </div>
+  </div>
+
+  <!-- Pricing Table -->
+  <div
+    class="glass-container border border-slate-200/50 dark:border-slate-700/30"
+  >
+    <!-- Table Header (Desktop) -->
+    <div
+      class="hidden md:grid grid-cols-12 gap-6 px-6 py-4 border-b border-slate-200/50 dark:border-slate-700/30"
+    >
+      <div
+        class="col-span-4 font-medium text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"
+      >
+        Captcha Type
+      </div>
+      <div
+        class="col-span-4 font-medium text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400"
+      >
+        Solution Methods
+      </div>
+      <div
+        class="col-span-2 font-medium text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400 text-center"
+      >
+        Avg. Speed
+      </div>
+      <div
+        class="col-span-2 font-medium text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right"
+      >
+        Starting From
+      </div>
+    </div>
+
+    <!-- Table Rows -->
+    <div class="divide-y divide-slate-200/50 dark:divide-slate-700/30">
+      {
+        pricingData.map((item, index) => (
+          <div
+            class="price-item transition-transform duration-300 ease-out"
+            style="will-change: transform;"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-4 sm:px-6 py-5 items-center">
+              {/* Captcha Type */}
+              <div class="col-span-4 flex items-center space-x-3">
+                {item.icon ? (
+                  <div class="flex-shrink-0 w-10 h-10 rounded-lg  dark:bg-slate-700/50 flex items-center justify-center p-1.5 shadow-sm">
+                    <img
+                      src={item.icon}
+                      alt={`${item.name} icon`}
+                      class="max-w-full max-h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : item.altIconText ? (
+                  <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-white/50 dark:bg-slate-700/50 flex items-center justify-center font-bold text-slate-600 dark:text-slate-300 text-xl">
+                    {item.altIconText}
+                  </div>
+                ) : null}
+
+                <div>
+                  <h3 class="font-semibold text-slate-800 dark:text-slate-100">
+                    {item.name}
+                  </h3>
+                  {item.comingSoon && (
+                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-100/80 text-amber-800 dark:bg-amber-500/20 dark:text-amber-400 mt-1 inline-block">
+                      Coming soon
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Solution Methods */}
+              <div class="col-span-4 mt-2 md:mt-0">
+                <div class="md:hidden text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
+                  Solution Methods
+                </div>
+                <ul class="space-y-1.5">
+                  {item.methods.map((method) => (
+                    <li class="flex items-start">
+                      <span class="text-slate-600 dark:text-slate-300 text-sm flex-1">
+                        {method.type}
+                      </span>
+                      <span class="ml-2 text-right">
+                        {method.price ? (
+                          <span class="font-medium text-slate-800 dark:text-slate-100">
+                            ${method.price}
+                            {method.unit && (
+                              <span class="text-xs text-slate-500 dark:text-slate-400">
+                                /{method.unit}
+                              </span>
+                            )}
+                          </span>
+                        ) : method.contactSales ? (
+                          <a
+                            href="/contact-sales"
+                            class="font-medium text-sky-600 dark:text-sky-400 hover:underline text-sm"
+                          >
+                            Contact Sales
+                          </a>
+                        ) : method.upcoming ? (
+                          <span class="text-xs font-medium text-amber-600 dark:text-amber-400">
+                            Coming soon
+                          </span>
+                        ) : (
+                          <span class="text-xs text-slate-500 dark:text-slate-400">
+                            --
+                          </span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Avg. Speed */}
+              <div class="col-span-2 mt-2 md:mt-0">
+                <div class="md:hidden text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
+                  Avg. Speed
+                </div>
+                <div class="flex flex-col items-center md:items-center space-y-1">
+                  {item.avgSpeed.map((speed) => (
+                    <div class="flex items-center space-x-1 text-sm text-slate-700 dark:text-slate-300">
+                      {speed !== "-" && (
+                        <Icon
+                          name="mdi:flash"
+                          class="w-4 h-4 text-amber-500 dark:text-amber-400"
+                        />
+                      )}
+                      <span>{speed}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Starting From */}
+              <div class="col-span-2 mt-2 md:mt-0">
+                <div class="md:hidden text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
+                  Starting From
+                </div>
+                <div class="flex flex-col items-end">
+                  <div class="font-bold text-lg text-sky-600 dark:text-sky-400">
+                    {item.startingPrice !== "--"
+                      ? `$${item.startingPrice}`
+                      : "--"}
+                  </div>
+                  <div class="text-xs text-slate-500 dark:text-slate-400">
+                    per 1000
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Table Footer -->
+    <div
+      class="px-6 py-4 border-t border-slate-200/50 dark:border-slate-700/30 bg-slate-50/20 dark:bg-slate-800/10"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div
+          class="flex items-center text-sm text-slate-600 dark:text-slate-300"
+        >
+          <Icon
+            name="mdi:clock-fast"
+            class="w-4 h-4 mr-2 text-teal-500 dark:text-teal-400"
+          />
+          <span>Average solve times measured across our global network</span>
+        </div>
+        <a
+          href="/get-started"
+          class="inline-flex items-center font-medium text-sky-600 dark:text-sky-400 hover:text-sky-500 dark:hover:text-sky-300 transition-colors group"
+        >
+          Get started now
+          <Icon
+            name="mdi:arrow-right"
+            class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature Highlights -->
+  <div class="mt-16 lg:mt-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        featureHighlights.map((feature) => (
+          <div
+            class="feature-card glass-container p-6 transition-transform duration-300 ease-out hover:shadow-lg"
+            style="will-change: transform;"
+          >
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+              <div class="w-12 h-12 rounded-xl bg-sky-100/50 dark:bg-sky-500/10 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-4">
+                <Icon name={feature.icon} size="1.5em" />
+              </div>
+              <h4 class="text-lg font-semibold text-slate-800 dark:text-white mb-2">
+                {feature.title}
+              </h4>
+              <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,235 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+
+// Enhanced status data
+const statusData = {
+  url: "https://status.nocaptchaai.com/",
+  uptime: "99.99%",
+  lastIncident: "No incidents in past 30 days",
+  performance: "Optimal",
+  responseTime: "28ms avg",
+  latency: "12ms p95",
+  regions: "12 global regions",
+};
+---
+
+<style is:global>
+  .status-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+  }
+
+  .status-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.12) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.08),
+      inset 0 0 16px rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .dark .status-card {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.28) 0%,
+      rgba(15, 23, 42, 0.22) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.25),
+      inset 0 0 16px rgba(255, 255, 255, 0.08);
+  }
+
+  .status-header {
+    background: linear-gradient(
+      90deg,
+      rgba(14, 165, 233, 0.1) 0%,
+      rgba(6, 182, 212, 0.08) 100%
+    );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .status-header {
+    background: linear-gradient(
+      90deg,
+      rgba(14, 165, 233, 0.15) 0%,
+      rgba(6, 182, 212, 0.12) 100%
+    );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .status-iframe-container {
+    height: 400px;
+    width: 100%;
+    position: relative;
+    background: rgba(245, 245, 245, 0.5);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .dark .status-iframe-container {
+    background: rgba(15, 23, 42, 0.3);
+  }
+
+  .status-iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  .status-iframe.loaded {
+    opacity: 1;
+  }
+
+  .dark .status-metric {
+    background: rgba(15, 23, 42, 0.5);
+  }
+
+  .status-metric:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .uptime-badge {
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+  }
+
+  .uptime-badge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.2) 0%,
+      rgba(5, 150, 105, 0.15) 100%
+    );
+    z-index: 0;
+  }
+
+
+
+  .status-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(245, 245, 245, 0.9) 100%
+    );
+    border-radius: 16px;
+    transition: opacity 0.4s ease;
+  }
+
+  .dark .status-placeholder {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.7) 0%,
+      rgba(30, 41, 59, 0.8) 100%
+    );
+  }
+
+</style>
+
+<div class="flex flex-col mx-auto justify-center pt-10">
+  <div>
+    <!-- Header -->
+    <div class="flex flex-col mx-auto justify-center text-center">
+      <h2 class="text-xl font-bold text-slate-800 dark:text-white">
+        System Status
+      </h2>
+      
+    </div>
+
+    <!-- Content -->
+    <div class="p-6">
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Status Iframe -->
+        <div class="w-full">
+          <div class="status-iframe-container">
+            <div id="statusPlaceholder" class="status-placeholder">
+              <div class="animate-pulse flex flex-col items-center gap-4 p-6">
+                <div
+                  class="w-16 h-16 rounded-full bg-slate-200 dark:bg-slate-700"
+                >
+                </div>
+                <div class="h-4 w-32 rounded bg-slate-200 dark:bg-slate-700">
+                </div>
+                <div class="h-3 w-48 rounded bg-slate-200 dark:bg-slate-700">
+                </div>
+              </div>
+            </div>
+            <iframe
+              id="statusIframe"
+              class="status-iframe"
+              loading="lazy"
+              src="https://status.nocaptchaai.com/"
+              title="NoCaptchaAI Status Dashboard"
+              onload="document.getElementById('statusPlaceholder').style.opacity = '0'; setTimeout(() => { document.getElementById('statusPlaceholder').style.display = 'none' }, 400); this.classList.add('loaded')"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // Enhanced intersection observer with retry logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const statusCard = document.querySelector(".status-card");
+    const iframe = document.getElementById("statusIframe");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!iframe.src.includes("status.nocaptchaai.com")) {
+              iframe.src = "${statusData.url}";
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "200px",
+      }
+    );
+
+    if (statusCard) observer.observe(statusCard);
+
+    // Error handling
+    iframe.addEventListener("error", () => {
+      const placeholder = document.getElementById("statusPlaceholder");
+      placeholder.innerHTML = `
+        <div class="text-center p-6">
+          <Icon name="mdi:alert-circle" class="w-12 h-12 text-amber-500 mx-auto mb-4" />
+          <h4 class="font-medium text-slate-800 dark:text-slate-200 mb-2">Failed to load status</h4>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Please try refreshing or check back later</p>
+          <button onclick="window.location.reload()" class="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 text-sm font-medium">
+            Retry
+          </button>
+        </div>
+      `;
+      placeholder.style.opacity = "1";
+      placeholder.style.display = "flex";
+    });
+  });
+</script>

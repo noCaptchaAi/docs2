@@ -1,0 +1,143 @@
+---
+// src/components/GlassLinkButton.astro
+import { Icon } from "@astrojs/starlight/components";
+
+export interface Props {
+  href: string;
+  variant?: "primary" | "secondary";
+  icon?: string; // Starlight icon name
+  iconPlacement?: "start" | "end";
+  target?: string;
+  class?: string; // Allow passing additional classes
+}
+
+const {
+  href,
+  variant = "primary",
+  icon,
+  iconPlacement = "end",
+  target = "_self",
+  class: userClass,
+  ...attrs
+} = Astro.props;
+
+const baseClasses = [
+  "inline-flex items-center justify-center",
+  "px-6 py-3 rounded-lg font-medium text-sm tracking-wide", // Slightly adjusted font-weight
+  "border",
+  "backdrop-blur-sm", // Subtle blur
+  "transition-all duration-300 ease-in-out",
+  "relative overflow-hidden", // For pseudo-element gradient shimmer
+  "focus:outline-none focus:ring-2 focus:ring-offset-1", // Adjusted focus ring
+];
+
+// Define styles for each variant (light and dark mode)
+// Using CSS variables for easier gradient definition if needed, or direct Tailwind gradients
+const variantStyles = {
+  primary: {
+    // Light mode: Subtle cool water gradient
+    lightGradient: "bg-gradient-to-br from-cyan-50/50 via-sky-100/40 to-blue-200/30",
+    lightBorder: "border-sky-300/60",
+    lightText: "text-sky-800",
+    lightHoverBg: "hover:from-cyan-100/60 hover:via-sky-200/50 hover:to-blue-300/40",
+    lightHoverShadow: "hover:shadow-[0_0_12px_0px_rgba(79,171,240,0.25)]", // Very subtle glow
+
+    // Dark mode: Deeper, moody water gradient
+    darkGradient: "dark:bg-gradient-to-br dark:from-cyan-800/30 dark:via-sky-700/20 dark:to-blue-600/20",
+    darkBorder: "dark:border-sky-600/50",
+    darkText: "dark:text-sky-200",
+    darkHoverBg: "dark:hover:from-cyan-700/40 dark:hover:via-sky-600/30 dark:hover:to-blue-500/30",
+    darkHoverShadow: "dark:hover:shadow-[0_0_12px_0px_rgba(79,171,240,0.3)]", // Very subtle glow
+
+    focusRing: "focus:ring-sky-400 dark:focus:ring-sky-500",
+    subtleShadow: "shadow-[0_2px_8px_0px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_0px_rgba(0,0,0,0.08)]", // Very subtle base shadow
+  },
+  secondary: {
+    // Light mode: Neutral, clear water/glass gradient
+    lightGradient: "bg-gradient-to-br from-slate-50/50 via-slate-100/40 to-slate-200/30",
+    lightBorder: "border-slate-300/60",
+    lightText: "text-slate-700",
+    lightHoverBg: "hover:from-slate-100/60 hover:via-slate-200/50 hover:to-slate-300/40",
+    lightHoverShadow: "hover:shadow-[0_0_12px_0px_rgba(100,116,139,0.2)]",
+
+    // Dark mode: Darker neutral glass gradient
+    darkGradient: "dark:bg-gradient-to-br dark:from-slate-800/30 dark:via-slate-700/20 dark:to-slate-600/20",
+    darkBorder: "dark:border-slate-600/50",
+    darkText: "dark:text-slate-300",
+    darkHoverBg: "dark:hover:from-slate-700/40 dark:hover:via-slate-600/30 dark:hover:to-slate-500/30",
+    darkHoverShadow: "dark:hover:shadow-[0_0_12px_0px_rgba(100,116,139,0.25)]",
+
+    focusRing: "focus:ring-slate-400 dark:focus:ring-slate-500",
+    subtleShadow: "shadow-[0_2px_8px_0px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_0px_rgba(0,0,0,0.08)]",
+  },
+};
+
+const currentVariant = variantStyles[variant] || variantStyles.primary;
+
+const combinedClasses = [
+  ...baseClasses,
+  currentVariant.lightGradient,
+  currentVariant.lightBorder,
+  currentVariant.lightText,
+  currentVariant.lightHoverBg,
+  currentVariant.lightHoverShadow,
+  currentVariant.darkGradient,
+  currentVariant.darkBorder,
+  currentVariant.darkText,
+  currentVariant.darkHoverBg,
+  currentVariant.darkHoverShadow,
+  currentVariant.focusRing,
+  currentVariant.subtleShadow,
+  userClass,
+].join(" ");
+---
+
+<a href={href} target={target} class:list={combinedClasses} {...attrs}>
+  {/* Optional: Add a subtle shimmer effect if desired
+  <span class="absolute inset-0 -z-10 overflow-hidden">
+    <span class="absolute top-0 left-1/2 w-[200%] h-[200%] -translate-x-1/2 -translate-y-1/4
+                 bg-gradient-radial from-white/10 via-transparent to-transparent
+                 animate-spin-slow opacity-50 group-hover:opacity-70"></span>
+  </span>
+  */}
+  {icon && iconPlacement === "start" && (
+    <Icon name={icon} class="w-4 h-4 pl-1 mr-2" />
+  )}
+  <slot />
+  {icon && iconPlacement === "end" && (
+    <Icon name={icon} class="w-4 h-4 pl-1 ml-2" />
+  )}
+</a>
+
+<style>
+  /* If you want a more custom subtle shimmer, you might need a bit of CSS */
+  /* For example, a linear gradient moving on hover */
+  /*
+  .shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.6s ease-in-out;
+    z-index: 0;
+  }
+  .shimmer-effect:hover::before {
+    left: 125%;
+  }
+  */
+
+  /*
+  If you need truly custom Tailwind animations like `animate-spin-slow` (if not default):
+  In your tailwind.config.js:
+  theme: {
+    extend: {
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      }
+    }
+  }
+  */
+</style>

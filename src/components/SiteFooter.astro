@@ -1,0 +1,486 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+import GlassButton from "./GlassButton.astro"; // Path to our refined button
+
+const solutions = [
+  { name: "reCAPTCHA V2", href: "/products/imagetasks/recaptcha/" },
+  { name: "BLS Captcha", href: "/products/imagetasks/bls" },
+  { name: "Cloudflare", href: "/products/token/cloudflare" },
+  { name: "Cloudflare Turnstile", href: "/products/token/turnstile" },
+  { name: "Geetest v4", href: "/products/imagetasks/geetestv4" },
+  { name: "Geetest v4 Token", href: "/products/token/geetestv4" },
+  { name: "Tiktok", href: "/products/imagetasks/Tiktok" },
+  { name: "Binance", href: "/products/imagetasks/Binance" },
+  { name: "reCAPTCHA V3", href: "/products/token/recaptcha" },
+  { name: "MTCaptcha", href: "/products/imagetasks/mtcaptcha" },
+  { name: "MTCaptcha token", href: "/products/token/mtcaptcha" },
+  { name: "AwsWaf", href: "/products/imagetasks/mtcaptcha" },
+  { name: "Image To Text", href: "/products/imagetasks/imagetotext" },
+  { name: "Geetest v3", href: "/products/imagetasks/geetestv3" },
+  { name: "All Products", href: "/start/quickstart", isSpecial: true },
+];
+
+const products = [
+  { 
+    name: "Captcha Solver for Chrome", 
+  href: "/start/quickstart/#start-solving-now" 
+},
+  {
+    name: "Captcha Solver Chrome (Automation)",
+    href: "/start/quickstart/#start-solving-now",
+  },
+  { 
+    name: "Captcha Solver for Firefox", 
+  href: "/start/quickstart/#start-solving-now" 
+},
+  {
+    name: "Captcha Solver for Firefox (Automation)",
+    href: "/start/quickstart/#start-solving-now",
+  },
+];
+
+const company = [
+  { name: "About Us", href: "/about" },
+  { name: "Contact", href: "/Contact" },
+  { name: "DMCA", href: "/legal/dmca" },
+  { name: "FAQ", href: "/legal/terms" }, // Note: You have two "FAQ" links, one for terms, one for privacy. This might be intentional or a typo.
+  { name: "FAQ", href: "/legal/privacy" },
+];
+
+const socialLinks = [
+  {
+    name: "Twitter",
+    href: "https://twitter.com/nocaptchaai",
+    icon: "x.com",
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/nocaptchaai",
+    icon: "github",
+  },
+  {
+    name: "Discord",
+    href: "https://discord.gg/nocaptchaai",
+    icon: "discord",
+  },
+  { 
+    name: "Telegram", 
+    href: "https://t.me/nocaptchaai", 
+    icon: "telegram" 
+  },
+  { 
+    name: "Youtube", 
+    href: "https://t.me/nocaptchaai", 
+    icon: "youtube" 
+  },
+  { 
+    name: "blueSky", 
+    href: "https://t.me/nocaptchaai", 
+    icon: "blueSky" 
+  },
+  { 
+    name: "Tiktok", 
+    href: "https://t.me/nocaptchaai", 
+    icon: "tiktok" 
+  },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<style is:global>
+  :root {
+    --footer-glow-opacity: 0.08;
+    --footer-border-radius: 24px;
+    --footer-transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .footer-glass {
+    position: relative;
+    isolation: isolate;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 0 12px rgba(255, 255, 255, 0.25);
+  }
+
+  .dark .footer-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.35) 0%,
+      rgba(15, 23, 42, 0.28) 50%,
+      rgba(15, 23, 42, 0.32) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.2),
+      inset 0 0 12px rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: conic-gradient(
+      from 210deg at 50% 50%,
+      rgba(14, 165, 233, var(--footer-glow-opacity)) 0deg,
+      rgba(168, 85, 247, var(--footer-glow-opacity)) 120deg,
+      rgba(6, 182, 212, var(--footer-glow-opacity)) 240deg,
+      rgba(14, 165, 233, var(--footer-glow-opacity)) 360deg
+    );
+    filter: blur(72px);
+    opacity: 0.7;
+    border-radius: var(--footer-border-radius);
+  }
+
+  .footer-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--footer-transition);
+    transform-origin: left center;
+  }
+
+  .footer-link:hover {
+    transform: translateX(6px);
+  }
+
+  .footer-link::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    left: -16px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: var(--footer-transition);
+  }
+
+  .footer-link:hover::before {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+
+  .footer-heading {
+    letter-spacing: -0.01em;
+    position: relative;
+    padding-bottom: 12px;
+  }
+
+  .footer-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #0ea5e9, #a855f7);
+    border-radius: 2px;
+  }
+
+  .newsletter-input {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+      inset 0 1px 3px rgba(255, 255, 255, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: var(--footer-transition);
+  }
+
+  .newsletter-input:focus {
+    box-shadow:
+      inset 0 1px 3px rgba(255, 255, 255, 0.4),
+      0 4px 12px rgba(14, 165, 233, 0.15),
+      0 0 0 1px rgba(14, 165, 233, 0.3);
+  }
+
+  .dark .newsletter-input {
+    box-shadow:
+      inset 0 1px 2px rgba(0, 0, 0, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .newsletter-input:focus {
+    box-shadow:
+      inset 0 1px 2px rgba(0, 0, 0, 0.3),
+      0 4px 12px rgba(6, 182, 212, 0.2),
+      0 0 0 1px rgba(6, 182, 212, 0.4);
+  }
+
+  .social-icon {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: var(--footer-transition);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.05),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  }
+</style>
+
+<footer
+  class="w-full text-slate-800 dark:text-slate-200 flex justify-center overflow-hidden mt-24"
+>
+  <!-- Decorative elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      class="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-sky-400/10 blur-[100px]"
+    >
+    </div>
+    <div
+      class="absolute -left-32 -bottom-32 w-96 h-96 rounded-full bg-purple-500/10 blur-[100px]"
+    >
+    </div>
+    <div
+      class="absolute left-1/2 -translate-x-1/2 top-0 w-full h-px bg-gradient-to-r from-transparent via-sky-500/20 to-transparent"
+    >
+    </div>
+  </div>
+
+  <!-- Main container -->
+  <div class="footer-glass rounded-t-[var(--footer-border-radius)] pt-24 pb-12">
+    <div class="container mx-auto px-6 lg:px-8">
+      <!-- Logo and social -->
+      <div
+        class="flex flex-col lg:flex-row justify-between items-center gap-12 mb-20"
+      >
+        <div
+          onclick="window.location.href='/'"
+          class="flex flex-col sm:flex-row items-center sm:items-start gap-5 cursor-pointer group"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-14 h-14 rounded-xl bg-white/20 dark:bg-slate-800/30 border border-white/30 dark:border-slate-700/50 flex items-center justify-center p-2 backdrop-blur-sm transition-transform group-hover:scale-105"
+            >
+              <img
+                src="/logo.svg"
+                class="w-full h-full object-contain"
+                alt="NoCaptchaAI Logo"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <span
+                class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-purple-500 dark:from-sky-400 dark:to-purple-400"
+              >
+                NoCaptcha AI
+              </span>
+              <p
+                class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-xs"
+              >
+                Next-generation AI RPA Solutions
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          {
+            socialLinks.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-icon w-12 h-12 rounded-xl flex items-center justify-center bg-white/30 dark:bg-slate-800/40 border border-white/30 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400"
+                aria-label={link.name}
+              >
+                <Icon name={link.icon} class="w-5 h-5" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Grid layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+        <!-- Solutions -->
+        <div>
+          <h3 class="footer-heading text-xl font-semibold mb-8">
+            <Icon
+              name="mdi:shield-check-outline"
+              class="w-5 h-5 mr-2 inline-block -mt-0.5"
+            />
+            Solutions
+          </h3>
+          <ul class="space-y-4">
+            {
+              solutions.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class={`footer-link text-base ${
+                      link.isSpecial
+                        ? "font-medium text-sky-600 dark:text-sky-400 hover:text-sky-500 dark:hover:text-sky-300"
+                        : "text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100"
+                    }`}
+                  >
+                    {link.name}
+                    {link.isSpecial && (
+                      <Icon
+                        name="mdi:sparkles"
+                        class="w-4 h-4 ml-2 text-amber-500 dark:text-amber-400"
+                      />
+                    )}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h3 class="footer-heading text-xl font-semibold mb-8">
+            <Icon
+              name="mdi:application-brackets"
+              class="w-5 h-5 mr-2 inline-block -mt-0.5"
+            />
+            Products
+          </h3>
+          <ul class="space-y-4">
+            {
+              products.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="footer-link text-base text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h3 class="footer-heading text-xl font-semibold mb-8">
+            <Icon
+              name="mdi:office-building"
+              class="w-5 h-5 mr-2 inline-block -mt-0.5"
+            />
+            Company
+          </h3>
+          <ul class="space-y-4">
+            {
+              company.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="footer-link text-base text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h3 class="footer-heading text-xl font-semibold mb-8">
+            <Icon
+              name="mdi:email-newsletter"
+              class="w-5 h-5 mr-2 inline-block -mt-0.5"
+            />
+            Newsletter
+          </h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+            Get exclusive updates and security insights directly to your inbox.
+          </p>
+          <form
+          >
+            <div class="relative">
+              <input
+                type="email"
+                name="email"
+                placeholder="Your professional email"
+                required
+                class="w-full px-5 py-3.5 pr-12 rounded-xl text-sm newsletter-input
+                       bg-white/50 border border-white/40 text-slate-800 placeholder-slate-500
+                       dark:bg-slate-800/50 dark:border-slate-700/50 dark:text-slate-100 dark:placeholder-slate-400
+                       focus:outline-none focus:ring-0"
+              />
+              <Icon
+                name="mdi:email-outline"
+                class="w-5 h-5 text-slate-500 dark:text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              />
+            </div>
+            <GlassButton
+              type="submit"
+              variant="primary"
+              fullWidth={true}
+              class="group hover:shadow-lg hover:-translate-y-0.5"
+            >
+              Subscribe
+              <Icon
+                name="mdi:arrow-right"
+                class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"
+              />
+            </GlassButton>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div
+        class="border-t border-white/20 dark:border-slate-700/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div
+          class="text-sm text-slate-500 dark:text-slate-400 text-center md:text-left"
+        >
+          © {currentYear} NoCaptchaAI Technologies. All rights reserved.
+        </div>
+        <iframe
+        class="color-scheme-none text-center self-center"
+        src="https://status.betterstack.com/badge"
+        width="250"
+        height="30"
+        frameborder="0"
+        scrolling="no"></iframe>
+
+        <div class="flex flex-wrap justify-center gap-5">
+          <a
+            href="/privacy"
+            class="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+          >
+            Privacy
+          </a>
+          <a
+            href="/terms"
+            class="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+          >
+            Terms
+          </a>
+          <a
+            href="/security"
+            class="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+          >
+            DMCA
+          </a>
+          <a
+            href="/contact"
+            class="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+          >
+            Contact Sales
+          </a>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+  
+</footer>

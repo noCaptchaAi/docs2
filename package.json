@@ -1,0 +1,45 @@
+{
+  "name": "afraid-azimuth",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^12.5.3",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/sitemap": "^3.4.0",
+    "@astrojs/starlight": "^0.34.3",
+    "@astrojs/starlight-tailwind": "^4.0.1",
+    "@fontsource-variable/quicksand": "^5.2.7",
+    "@fontsource/alata": "^5.2.5",
+    "@fontsource/magra": "^5.2.5",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@tailwindcss/vite": "^4.1.8",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "astro": "^5.8.1",
+    "astro-compressor": "^1.0.0",
+    "astro-og": "^0.3.0",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.34.2",
+    "starlight-fullview-mode": "^0.2.3",
+    "starlight-llms-txt": "^0.5.1",
+    "starlight-theme-flexoki": "^0.1.0",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss": "^4.1.8",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "astro-vtbot": "^2.1.3"
+  }
+}

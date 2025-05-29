@@ -1,0 +1,40 @@
+---
+// src/components/ExtensionLinks.astro
+// @ts-nocheck - Retaining if you have specific TS needs not covered by Astro's defaults
+
+import GlassButton from "./GlassButton.astro";
+
+---
+
+<div class="text-center text-lg flex flex-col gap-2">
+  <GlassButton
+    icon="rocket"
+    class="w-full flex flex-row gap-2 text-left"
+    iconPlacement="start"
+    target="_blank"
+    href="https://chromewebstore.google.com/detail/nocaptcha-ai-auto-captcha/hbnbcapieoandchfgacedlkjpdbbejgb?hl=en&utm_source=docs"
+    variant="primary"
+  >
+    Add to Chrome
+  </GlassButton>
+  <GlassButton
+    icon="seti:firefox"
+    iconPlacement="start"
+    class="w-full flex flex-row gap-2 text-left"
+    target="_blank"
+    href="https://addons.mozilla.org/en-US/firefox/addon/nocaptcha-ai-captcha-solver/?hl=en&utm_source=docs"
+    variant="primary"
+  >
+    Add to Firefox
+  </GlassButton>
+  <GlassButton
+    icon="github"
+    iconPlacement="start"
+    class="w-full flex flex-row gap-2 text-left"
+    target="_blank"
+    href="https://github.com/noCaptchaAi/NoCaptcha-Ai-Browser-Extension?hl=en&utm_source=docs"
+    variant="primary"
+  >
+    Download from Github
+  </GlassButton>
+</div>

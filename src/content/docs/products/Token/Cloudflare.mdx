@@ -1,0 +1,143 @@
+---
+title: Cloudflare Task
+description: with this `POST` request you get Cloudflare Challenge Task solved.
+---
+
+import { Badge } from "@astrojs/starlight/components";
+import { Icon } from "@astrojs/starlight/components";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { Code } from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components";
+import { LinkButton } from "@astrojs/starlight/components";
+import { Steps } from "@astrojs/starlight/components";
+import { Card, CardGrid } from "@astrojs/starlight/components";
+import { LinkCard } from "@astrojs/starlight/components";
+import LinkButtons from "../../../../components/Promo.astro";
+import createTaskJson from "../../../../data/Createtask.json";
+import CreateTaskData from "../../../../components/createTaskData.astro";
+
+{/* # Cloudflare Challenge Task */}
+
+with this `POST` request you get Cloudflare Challenge solved.
+
+<LinkButtons />
+
+### Creating Task: `/CreateTask` 
+
+```
+POST https://api.nocaptchaai.com/createTask
+Host: api.nocaptchaai.com
+Content-Type: application/json
+```
+
+## Task structure specification :
+
+<CreateTaskData tableData={createTaskJson.cloudflare} />
+
+# Request
+
+```json
+{
+  "clientKey": "YOUR_API_KEY", # your noCaptchaAi.com APIKEY
+  "task": {
+    "type": "AntiCloudflareTask",
+    "websiteURL": "https://example.com",
+    "proxy": "123.123.0.1:0000:xxxxxx:xxxxxxxx" # your proxy
+  }
+}
+```
+
+#### Example Response
+
+```json
+{
+    "errorId": 0,
+    "status": "idle",
+    "taskId": "CFQ2yP5DOL"
+}
+```
+
+### Getting Result: `/getTaskResult`
+```
+POST https://api.nocaptchaai.com/getTaskResult
+Host: api.nocaptchaai.com
+Content-Type: application/json
+```
+
+```json
+{
+  "clientKey": "YOUR_API_KEY", # your noCaptchaAi.com APIKEY
+  "taskId": "CFTCirZWgod"
+}
+```
+
+
+#### Example Response
+
+
+```json
+{
+    "errorCode": 0,
+    "errorDescription": null,
+    "errorId": 0,
+    "solution": {
+        "token": "0.WdWV79pV71mHDjQosbBnYWVXwNaQxWXJ_jIKSmhiGPe0hsoZ2yGlnlU99MQn-goG2vFqJ6kcs9aW3OgLW5mF5B8aA9EnjvYENwoQMufkvzJcP5tl8VCV1itaFuPCtz2rbZR8vdFxMyfnda7qhu_wUdtoW8OpWIV7niuslrg-OhRWG_7m8lUFOTa5tOcSBUxsr25LSZSOjk_fneYRzzNACWGTrbbqloe-j6p8aLDh857iY6FL1C-c1jEIXHm8ilBYyYKuTyLNYU-tP2fTjYSXuyofE2tdnh92asYp7c-Z_gDCiDpyQt_MRaC1OZ1mHxNT5JLkUkicxWgaz1ttnzRhgkxhk0D9JR2TE0XXZw9XYDVB-EaJk5oB82yRYEsfC6ydYLD4vCC1nBVevYtvLRmdLvqWaaDm8uJrlEK4kV8m7ELzP2v7AmXgGNAaCK_APaaLoRz6FgU8HjRNgTF2l6Uimd3xeUCOOzvSJIxKw9NP2CFYI8R8OCkbXJ2hQxeWqdBgaB_dLErZobL5Q4p7CX0qogshsjERqxgpS60lMxVAPKKT6y7p9zUgf1Ez4QvlWa3vWuBmiGDry1a_BO1xJ_X2lb-pEUU6ER8naLeyVn9OpiWc7uBmPOuK11KeHBhkYieIfFicqDkR3sXpyDVJnj7GYtTuMCvcdDV33fdQae9lFfjI_55ywsH4HFDMpNK9ANBJ7UsdkXv9XCMOK7e-X2DKM-zxV6zlL8hClGLe5vRmLk6crkhWktlPRZYnE2DeXPO8D23V-2t44dVIhqggGiqQ1WOAsQuISiw8Od85zhHmn8mdjaw-NilpwcVTTv1SoO4K.bkRehIdUGGiOqbpwGY6YOA.f405ffb4e5d100ce42a7301fd59cfb4f7f6c08aea3379b07475accd43317766d",
+        "type": "turnstile",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+    },
+    "status": "ready"
+}
+```
+
+
+## API Testing Example Scripts
+
+
+<Tabs syncKey="languages">
+
+  <TabItem label="Python">
+  ```py
+  # pip install requests
+import requests, time
+
+API_KEY = "API_KEY"
+SITE_KEY = "0x4XXXXXXXXXXXXXXX"
+SITE_URL = "https://example.com"
+
+def solve_nocaptchaai():
+    session = requests.Session()
+    task = session.post("https://api.nocaptchaai.com/createTask", json={
+        "clientKey": API_KEY,
+        "task": {
+            "type": "AntiCloudflareTask",
+            "proxy": "123.123.0.1:0000:xxxxxx:xxxxxxxx" # your proxy
+            "websiteURL": SITE_URL,
+        }
+    }).json()
+
+    task_id = task.get("taskId")
+    if not task_id:
+        raise Exception(f"Task creation failed: {task}")
+
+    while True:
+        time.sleep(1)
+        result = session.post("https://api.nocaptchaai.com/getTaskResult", json={
+            "clientKey": API_KEY,
+            "taskId": task_id
+        }).json()
+
+        if result.get("status") == "ready":
+            return result["solution"]["token"]
+        if result.get("status") == "failed" or result.get("errorId"):
+            raise Exception(f"Captcha solving failed: {result}")
+
+if __name__ == "__main__":
+    token = solve_nocaptchaai()
+    print("Captcha Token:", token)
+
+
+```
+  
+  
+  </TabItem>
+</Tabs>

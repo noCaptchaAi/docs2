@@ -1,0 +1,91 @@
+---
+// src/components/GlassButton.astro
+import { Icon } from "@astrojs/starlight/components";
+
+export interface Props {
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary";
+  icon?: string;
+  iconPlacement?: "start" | "end";
+  target?: string;
+  class?: string;
+  fullWidth?: boolean;
+}
+
+const {
+  href,
+  type = "button",
+  variant = "primary",
+  icon,
+  iconPlacement = "end",
+  target,
+  class: userClass,
+  fullWidth = false,
+  ...attrs
+} = Astro.props;
+
+const baseClasses = [
+  "inline-flex items-center justify-start",
+  "px-5 py-2.5 rounded-lg font-medium tracking-wide",
+  "border backdrop-blur-sm",
+  "transition-all duration-300 ease-in-out",
+  "relative overflow-hidden",
+  "focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-slate-900", // Adjusted offset for dark bg
+];
+
+const variantStyles = {
+  primary: {
+    gradient: "bg-gradient-to-br from-cyan-600/40 via-sky-700/30 to-blue-800/30",
+    border: "border-cyan-500/60",
+    text: "dark:text-yellow-400 text-teal-700 font-bold text-xl",
+    hoverBg: "hover:from-cyan-500/50 hover:via-sky-600/40 hover:to-blue-700/40",
+    hoverShadow: "hover:shadow-[0_0_15px_1px_rgba(79,171,240,0.3)]",
+    focusRing: "focus:ring-sky-400",
+    baseShadow: "shadow-[0_2px_10px_0px_rgba(0,0,0,0.1)] dark:shadow-[0_2px_10px_0px_rgba(0,0,0,0.2)]",
+  },
+  secondary: { // More subtle for less emphasis
+    gradient: "bg-gradient-to-br from-slate-600/30 via-slate-700/20 to-slate-800/20",
+    border: "border-slate-500/50",
+    text: "dark:text-green-600 text-sky-600 text-3xl",
+    hoverBg: "hover:from-slate-500/40 hover:via-slate-600/30 hover:to-slate-700/30",
+    hoverShadow: "hover:shadow-[0_0_12px_0px_rgba(100,116,139,0.25)]",
+    focusRing: "focus:ring-slate-400",
+    baseShadow: "shadow-[0_2px_8px_0px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_8px_0px_rgba(0,0,0,0.1)]",
+  },
+};
+
+const currentVariant = variantStyles[variant] || variantStyles.primary;
+
+const combinedClasses = [
+  ...baseClasses,
+  currentVariant.gradient,
+  currentVariant.border,
+  currentVariant.text,
+  currentVariant.hoverBg,
+  currentVariant.hoverShadow,
+  currentVariant.focusRing,
+  currentVariant.baseShadow,
+  fullWidth ? "w-full" : "",
+  userClass ? userClass : "flex flex-row items-center justify-center gap-2",
+  "dark:bg-slate-900 dark:border-slate-700 dark:text-white",
+].filter(Boolean).join(" ");
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  href={href}
+  type={href ? undefined : type}
+  target={target}
+  class:list={combinedClasses}
+  {...attrs}
+>
+  {icon && iconPlacement === "start" && (
+    <Icon name={icon} class="w-6" />
+  )}
+  <slot />
+  {icon && iconPlacement === "end" && (
+    <Icon name={icon} class="w-6" />
+  )}
+</Tag>

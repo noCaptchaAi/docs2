@@ -1,0 +1,56 @@
+---
+title: The NoCaptcha API ️‍🔥
+description: captcha-solving service, bypass all reCaptcha, geetest Captcha, awswaf Captcha, BLS Captcha, mtCaptcha, OCR captcha and more
+template: splash
+hero:
+  tagline: Scale and bypass web restrictions, boost RPA workflow in minuets with NoCaptchaAi API, Enterprises loves our commitment to quality.
+  image:
+    file: ../../assets/promo5.svg
+  actions:
+    - text: Start Solving
+      link: /start/quickstart/
+      icon: right-arrow
+      variant: primary
+    - text: Get Browser Extension
+      link: https://nocaptchaai.com/extension
+      icon: seti:firefox
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import {
+  Icon,
+  LinkCard,
+  LinkButton,
+  Aside,
+} from "@astrojs/starlight/components";
+import CustomCard from "../../components/CustomCard.astro"
+import SiteFooter from "../../components/SiteFooter.astro";
+import PricingTable from "../../components/PricingTable.astro";
+import GlassButton from "../../components/GlassButton.astro";
+import ExtensionLinks from "../../components/ExtensionLinks.astro";
+import ExtensionHero from "../../components/ExtensionHero.astro";
+import AvailableSolutions from "../../components/AvailableSolutions.astro";
+import TrustBadges from "../../components/TrustBadges.astro";
+import ServiceStatus from "../../components/ServiceStatus.astro";
+import { Badge } from '@astrojs/starlight/components';
+
+
+
+<TrustBadges />
+
+<ExtensionHero />
+
+
+<div class="flex flex-row justify-center align-middle gap-2 pt-20 mt-20">
+  <h1 class="text-4xl font-bold text-center ">Available API Solutions</h1>
+  <Badge text="New" size="small" class="h-5" />
+</div>
+
+
+<AvailableSolutions />
+
+<PricingTable />
+
+<ServiceStatus />
+
+<SiteFooter />

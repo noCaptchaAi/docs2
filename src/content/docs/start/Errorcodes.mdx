@@ -1,0 +1,48 @@
+---
+title: Error Codes
+description: Comprehensive Error Codes Guide for NoCaptcha AI
+lastUpdated: 2025-04-29
+---
+
+import GroupName from "../../../components/GroupName.astro";
+import { Card, CardGrid } from "../../../components/components";
+import { Icon, LinkCard, LinkButton, Aside } from "@astrojs/starlight/components";
+import CustomCard from "../../../components/CustomCard.astro";
+
+<GroupName>Error Codes</GroupName>
+
+# Error Codes
+
+This document provides a complete reference for understanding error codes returned by NoCaptcha AI systems.
+
+---
+
+## Glossary
+
+| Field            | Description                        |
+| ---------------- | ---------------------------------- |
+| `errorId`        | Unique internal error identifier.  |
+| `errorCode`      | Public-facing error code.          |
+| `errorDescription` | Human-readable explanation of the error. |
+| `status`         | Current status of the request or system state. |
+
+---
+
+#### Meaning
+
+| status   | errorId 
+| ---------------- | ---------------------------------- |
+| 200 | `1` =  error        |
+| 400 | `0` = successful | 
+| 400 | `0` = successful |  
+---
+
+## Example Response
+
+```json
+{
+  "errorId": 1,
+  "errorCode": 0,
+  "errorDescription": null,
+  "status": "ready"
+}
