@@ -35,32 +35,22 @@ export default defineConfig({
       {
         icon: "github",
         label: "GitHub",
-        href: "https://github.com/withastro/starlight",
+        href: "https://github.com/noCaptchaAi/NoCaptcha-Ai-Browser-Extension",
       },
       {
         icon: "email",
         label: "Email",
-        href: "https://github.com/withastro/starlight",
-      },
-      {
-        icon: "blueSky",
-        label: "Bluesky",
-        href: "https://github.com/withastro/starlight",
-      },
-      {
-        icon: "twitter",
-        label: "X",
-        href: "https://github.com/withastro/starlight",
+        href: "mailto:ai@nocaptchaai.com",
       },
       {
         icon: "discord",
         label: "Discord",
-        href: "https://github.com/withastro/starlight",
+        href: "https://discord.com/invite/E7FfzhZqzA",
       },
       {
         icon: "telegram",
         label: "Telegram",
-        href: "https://github.com/withastro/starlight",
+        href: "https://t.me/noCaptchaAi",
       },
     ],
     head: [

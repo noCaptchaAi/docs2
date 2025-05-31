@@ -38,49 +38,30 @@ Content-Type: application/json
   description="EMAIL us for custom OCR model solutions. 90+ Percent accuracy. 99% Uptime. Cheaper"
 />
 
-### Supported `module` List:
-
-```
- "module": "common"
- "module": "omgomg"
- "module": "probot"
- "module": "mtcap"
- "module": "dell"
- "module": "catch"
- "module": "webde"
- "module": "zefoy"
- "module": "caixa"
- "module": "oxcheats"
- "module": "u1"
- "module": "zoho"
- "module": "protypers"
- "module": "visa1"
-```
-
-
-
-
 
 ### Request Format
 
 ```json
 {
-  "clientKey": "YOUR_API_KEY", // Get API_KEY from https://NoCaptchaAi.com
-  "task": {
-    "type": "ImageToTextTask",
-    "module": "common", // "module_001", "module_002", ...
-    "body": "base64image", // string(single) or array(multiple) of base64 of the main images
-    "websiteURL": "website URL", // source url to improve accuracy
-    "phrase": false,
-    "case": true,
-    "numeric": 0,
-    "math": false,
-    "minLength": 1,
-    "maxLength": 5,
-    "score": 0.8, // 0.8 ~ 1 expected matching score
-    "comment": "enter the text you see on the image"
-  },
-  "languagePool": "en"
+    "clientKey": "YOUR_API_KEY", // your nocaptchaai apikey
+    "task": {
+        "type": "ImageToTextTask", // task type
+        "module": "bls", // module name for specific captcha
+        "images": [
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/", // base64 image
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/", // base64 image
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/",
+            "/9j/4AAQSkZJRgABAQAAAQABAAD/", // base64 image
+        ],
+        "numeric": true, // if solution is number form
+        "case": false, // if solution needs to be upper or lower
+        "maxLength": 3 // 
+    }
 }
 ```
 

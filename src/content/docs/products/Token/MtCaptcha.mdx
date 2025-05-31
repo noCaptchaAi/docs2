@@ -38,11 +38,11 @@ Content-Type: application/json
 
 ```json
 {
-  "clientKey": "YOUR_API_KEY", # your noCaptchaAi.com APIKEY
+  "clientKey": "YOUR_API_KEY",
   "task": {
-    "type": "AntiCloudflareTask",
-    "websiteURL": "https://example.com",
-    "proxy": "123.123.0.1:0000:xxxxxx:xxxxxxxx" # your proxy
+    "type": "MtCaptchaTaskProxyless",
+    "websiteURL": "www.mtcaptcha.com",
+    "websiteKey": "MTPublic-tqNCRE0GS"
   }
 }
 ```
@@ -53,7 +53,7 @@ Content-Type: application/json
 {
     "errorId": 0,
     "status": "idle",
-    "taskId": "CFQ2yP5DOL"
+    "taskId": "MTeTWrD8Rl"
 }
 ```
 
@@ -77,13 +77,11 @@ Content-Type: application/json
 
 ```json
 {
-    "errorCode": 0,
-    "errorDescription": null,
+    "errorCode": "",
+    "errorDescription": "",
     "errorId": 0,
     "solution": {
-        "token": "0.WdWV79pV71mHDjQosbBnYWVXwNaQxWXJ_jIKSmhiGPe0hsoZ2yGlnlU99MQn-goG2vFqJ6kcs9aW3OgLW5mF5B8aA9EnjvYENwoQMufkvzJcP5tl8VCV1itaFuPCtz2rbZR8vdFxMyfnda7qhu_wUdtoW8OpWIV7niuslrg-OhRWG_7m8lUFOTa5tOcSBUxsr25LSZSOjk_fneYRzzNACWGTrbbqloe-j6p8aLDh857iY6FL1C-c1jEIXHm8ilBYyYKuTyLNYU-tP2fTjYSXuyofE2tdnh92asYp7c-Z_gDCiDpyQt_MRaC1OZ1mHxNT5JLkUkicxWgaz1ttnzRhgkxhk0D9JR2TE0XXZw9XYDVB-EaJk5oB82yRYEsfC6ydYLD4vCC1nBVevYtvLRmdLvqWaaDm8uJrlEK4kV8m7ELzP2v7AmXgGNAaCK_APaaLoRz6FgU8HjRNgTF2l6Uimd3xeUCOOzvSJIxKw9NP2CFYI8R8OCkbXJ2hQxeWqdBgaB_dLErZobL5Q4p7CX0qogshsjERqxgpS60lMxVAPKKT6y7p9zUgf1Ez4QvlWa3vWuBmiGDry1a_BO1xJ_X2lb-pEUU6ER8naLeyVn9OpiWc7uBmPOuK11KeHBhkYieIfFicqDkR3sXpyDVJnj7GYtTuMCvcdDV33fdQae9lFfjI_55ywsH4HFDMpNK9ANBJ7UsdkXv9XCMOK7e-X2DKM-zxV6zlL8hClGLe5vRmLk6crkhWktlPRZYnE2DeXPO8D23V-2t44dVIhqggGiqQ1WOAsQuISiw8Od85zhHmn8mdjaw-NilpwcVTTv1SoO4K.bkRehIdUGGiOqbpwGY6YOA.f405ffb4e5d100ce42a7301fd59cfb4f7f6c08aea3379b07475accd43317766d",
-        "type": "turnstile",
-        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+        "token": "v1(b77c1ca7,5a5c9214,MTPublic-tqNCRE0GS,b9932366cb515e33dcf64603c60e94c6,4VJHpmB6vI84OnXv1nsxmiKvi0za9ha599mAm2qjY0ZW7UVPOSG205kMlubNY3gC3x9fnhulmUpyz_NhVsaRPa44xm5tJvSxBZOTqWh_ZRjI3cAx1JYtQbmx-Iy_pORE4qIfj4MXqZtk72XSD7MHv5oeLbqmaS-A-_eMiTiw1zcBsfPi23Tmu_TRQKZWZEdvzrxTixoXzrr5D7W7t1WeNNy9tpzMrqUINxR1gY7f1WppFFNbYcvN9LTtTX8P7N_aj2DBOglNoQ2nrWB-IvXrUu7GqMl2E3BR38oNg0CBsDTO0eHD0XtmhLvd2r3CzSGui765Tm1AAgMo65PcbyGx8IZ7fLL13GRLt_68vfPZjJfdaRD5O-96UWUK_0sgNpc5OkXNy2hH2gzddT0INXLUM2JdmRt-7SQRwUhB_Nic9tstqnASaaW0VjYOCXXM5Jqo)"
     },
     "status": "ready"
 }

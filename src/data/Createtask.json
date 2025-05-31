@@ -99,15 +99,7 @@
         "String",
         "Optional",
         "Page source URL where the challenge appears"
-      ],
-      [
-        "metadata",
-        "Object",
-        "Optional",
-        "Additional metadata, including 'pageURL' and 'title'"
-      ],
-      ["source", "String", "Optional", "Client source, e.g., 'chrome'"],
-      ["version", "String", "Optional", "API version, e.g., '1.0.0'"]
+      ]
     ]
   },
   "GeeTestV4": {
@@ -126,9 +118,26 @@
         "String",
         "Optional",
         "Page source URL to improve accuracy"
+      ]
+    ]
+  },
+   "Tiktok": {
+    "columns": ["Properties", "Value", "Required", "Description"],
+    "rows": [
+      ["value", "String", "Required", "GeetestClassification"],
+      [
+        "images",
+        "List[String]",
+        "Required",
+        "Base64-encoded images; can be an empty array or contain multiple images"
       ],
-      ["source", "String", "Optional", "Client source, e.g., 'chrome'"],
-      ["version", "String", "Optional", "API version, e.g., '1.0.0'"]
+      ["question", "String", "Required", "Value of challenge, e.g., 'slide'"],
+      [
+        "websiteURL",
+        "String",
+        "Optional",
+        "Page source URL to improve accuracy"
+      ]
     ]
   },
   "Binance": {
@@ -264,12 +273,6 @@
         "String",
         "Required",
         "WebPage Challenge Key URL Required"
-      ],
-      [
-        "metadata",
-        "Map<String,String>",
-        "Optional",
-        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
       ]
     ]
   },"turnstile": {
@@ -282,50 +285,32 @@
         "String",
         "Required",
         "WebPage Challenge Key URL Required"
-      ],
-      [
-        "metadata",
-        "Map<String,String>",
-        "Optional",
-        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
       ]
     ]
   },
   "MTCaptchaToken": {
     "columns": ["Properties", "Value", "Required", "Description"],
     "rows": [
-      ["type", "String", "Required", "AntiCloudflareTask"],
+      ["type", "String", "Required", "MtCaptchaTaskProxyless"],
       ["websiteURL", "String", "Required", "WebPage source URL Required"],
       [
         "websiteKey",
         "String",
         "Required",
         "WebPage Challenge Key URL Required"
-      ],
-      [
-        "metadata",
-        "Map<String,String>",
-        "Optional",
-        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
       ]
     ]
   },
   "GeeTestv4Token": {
     "columns": ["Properties", "Value", "Required", "Description"],
     "rows": [
-      ["type", "String", "Required", "AntiCloudflareTask"],
+      ["type", "String", "Required", "GeeTestTaskProxyLess"],
       ["websiteURL", "String", "Required", "WebPage source URL Required"],
       [
         "websiteKey",
         "String",
         "Required",
         "WebPage Challenge Key URL Required"
-      ],
-      [
-        "metadata",
-        "Map<String,String>",
-        "Optional",
-        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
       ]
     ]
   },
@@ -339,12 +324,6 @@
         "String",
         "Required",
         "WebPage Challenge Key URL Required"
-      ],
-      [
-        "metadata",
-        "Map<String,String>",
-        "Optional",
-        "Turnstile extra data . Docs: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/"
       ]
     ]
   }
